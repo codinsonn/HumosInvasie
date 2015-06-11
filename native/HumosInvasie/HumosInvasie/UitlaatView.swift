@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Gifu
 
 class UitlaatView: UIView, UITextFieldDelegate {
     
     var inputBgImage : UIImage!;
     var uitlaatBgImgView : UIImageView!;
+    var charHeadBgImgAnim : AnimatableImageView!;
     
     var characterHead : UIButton!;
     var showingInput : Int!;
@@ -33,6 +35,11 @@ class UitlaatView: UIView, UITextFieldDelegate {
         self.addSubview(uitlaatBgImgView);
         self.uitlaatBgImgView.transform = CGAffineTransformScale(self.transform, 0.5, 0.5);
         self.uitlaatBgImgView.alpha = 0;
+        
+        self.charHeadBgImgAnim = AnimatableImageView(frame: CGRectMake(-8, 230, 100, 100));
+        self.charHeadBgImgAnim.animateWithImage(named: "CharHeadBg.gif");
+        self.charHeadBgImgAnim.alpha = 1;
+        self.addSubview(charHeadBgImgAnim);
         
         self.characterHead = UIButton(frame: CGRect(x: -8, y: 230, width: 90, height: 90));
         self.characterHead.setTitle(" ", forState: .Normal);
@@ -145,6 +152,14 @@ class UitlaatView: UIView, UITextFieldDelegate {
     
     func showInput(){
         
+        UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            
+            self.charHeadBgImgAnim.alpha = 0;
+            self.charHeadBgImgAnim.transform = CGAffineTransformMakeScale(0.4, 0.4);
+            self.charHeadBgImgAnim.startAnimating();
+            
+        }, completion: nil);
+        
         UIView.animateWithDuration(0.7, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.characterHead.frame = CGRectMake(-8, 40, 90, 90);
@@ -170,6 +185,14 @@ class UitlaatView: UIView, UITextFieldDelegate {
     func hideInput(){
         
         self.inputField.endEditing(true);
+        
+        UIView.animateWithDuration(0.4, delay: 0.8, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            
+            self.charHeadBgImgAnim.alpha = 1;
+            self.charHeadBgImgAnim.transform = CGAffineTransformMakeScale(1, 1);
+            self.charHeadBgImgAnim.startAnimating();
+            
+        }, completion: nil);
         
         UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
