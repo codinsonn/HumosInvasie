@@ -14,6 +14,7 @@ class MainView: UIView {
     var bgImageView:UIImageView!;
     var bgImage:UIImage!;
     var preloadAnim:AnimatableImageView!;
+    var preloadWebView:UIWebView!;
     
     override init(frame: CGRect){
         
@@ -24,11 +25,11 @@ class MainView: UIView {
         self.bgImageView.frame = frame;
         self.addSubview(self.bgImageView);
         
-        self.preloadAnim = AnimatableImageView(frame: frame);
-        self.preloadAnim.animateWithImage(named: "LogoPreloader.gif");
-        self.preloadAnim.startAnimating();
-        self.preloadAnim.alpha = 1;
-        self.addSubview(preloadAnim);
+        var filePath = NSBundle.mainBundle().pathForResource("LogoPreloader", ofType: "gif");
+        var gif = NSData(contentsOfFile: filePath!);
+        self.preloadWebView = UIWebView(frame: frame);
+        self.preloadWebView.loadData(gif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil);
+        self.addSubview(preloadWebView);
         
     }
 
@@ -38,17 +39,15 @@ class MainView: UIView {
     
     func dismissPreloader(){
         
-        self.preloadAnim.stopAnimating();
-        
-        UIView.animateWithDuration(0.6, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.8, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.preloadAnim.alpha = 0;
+            self.preloadWebView.alpha = 0;
             
         }, completion: nil);
         
         UIView.animateWithDuration(0.1, delay: 0.8, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.preloadAnim.removeFromSuperview();
+            self.preloadWebView.removeFromSuperview();
             
         }, completion: nil);
         
