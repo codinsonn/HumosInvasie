@@ -1,0 +1,520 @@
+body, article, section, div, h1, p, img, form, legend, input, label, a {
+  display: block;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  background-color: #ECF0F1;
+  background-image: url("../img/patterns/shattered.png");
+}
+
+@font-face {
+  font-family: "BigNoodleTitling";
+  src: url('../fonts/big_noodle_titling-webfont.eot');
+  src: url('../fonts/big_noodle_titling-webfont.eot?#iefix') format('eot'), url('../fonts/big_noodle_titling-webfont.woff') format('woff'), url('../fonts/big_noodle_titling-webfont.tff') format('truetype'), url('../fonts/big_noodle_titling-webfont.svg') format('svg');
+}
+
+article[id="content"] header > h1 {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+#container > header nav h1{
+  display: none;
+}
+
+#sideLabel{
+  position: fixed;
+  right: -32px;
+  top: 50%;
+  padding: 10px 20px 2px 20px;
+  font-size: 2.2em;
+  font-family: BigNoodleTitling;
+  text-decoration: none;
+  color: #FFFFFF;
+  background-color: #333333;
+  transform: rotate(-90deg);
+}
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
+
+.clear{
+  clear: both;
+}
+
+/* ----- Header ---------------------------------------------------------------------------- */
+
+#container > header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  background-color: #FFFFFF;
+  border-bottom: 8px solid #3AC6F4;
+  /*box-shadow: 0 0 2px rgba(66, 66, 66, .30);*/
+  z-index: 100;
+}
+
+#container > header h1{
+  position: absolute;
+  left: 50%;
+  margin-left: -480px;
+  margin-top: 13px;
+  display: block;
+}
+
+#container > header h1 a{
+  width: 108px;
+  height: 45px;
+  background-image: url("../img/BDK_Logo.png");
+  background-size: cover;
+  display: block;
+}
+
+#container > header h1 a span{
+  display: none;
+}
+
+#container > header nav{
+  position: absolute;
+  width: 100%;
+  height: 72px;
+  left: 50%;
+  margin-left: -512px;
+  background-color: #FFFFFF;
+}
+
+#container > header nav h1{
+  display: none;
+}
+
+#container > header nav ul{
+  position: relative;
+  margin-top: 0px;
+  margin-left: 40px;
+}
+
+#container > header nav ul li{
+  position: relative;
+  font-size: 2.5em;
+  font-family: "BigNoodleTitling";
+  font-weight: bold;
+  float: left;
+  display: inline-block;
+}
+
+#container > header nav ul li a{
+  padding: 24px 30px 18px 30px;
+  color: #3AC6F4;
+  border-left: 1px solid #ebebeb;
+  border-right: 1px solid #ebebeb;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: block;
+}
+
+#container > header nav ul li:first-child a{
+  border-left: 2px solid #ebebeb;
+}
+
+#container > header nav ul li:last-child a{
+  border-right: 2px solid #ebebeb;
+}
+
+#container > header nav ul li a:hover, #container > header nav ul li a[class="selected"], .selected{
+  color: #FFFFFF;
+  background-color: #3AC6F4;
+  border-color: #3AC6F4;
+}
+
+#container > header form{
+  display: none;
+}
+
+.mLeft{
+  margin-left: 40px;
+}
+
+/* ----- Errors / Notifications ---------------------------------------------------------------------------- */
+
+#errors {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 0 20px;
+  background-color: #FFFFFF;
+  border-top: 5px solid #e04b3f;
+  color: #e04b3f;
+  z-index: 110;
+}
+
+#notifications {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 0 20px;
+  background-color: #FFFFFF;
+  border-top: 5px solid #3AC6F4;
+  color: #3AC6F4;
+  z-index: 120;
+}
+
+#errors h3, #notifications h3 {
+  font-size: 1.4em;
+  font-family: BigNoodleTitling;
+  margin-bottom: 5px;
+}
+
+#errors ol li, #notifications ol li {
+  font-size: 1.2em;
+  font-family: Tahoma;
+  margin-left: -15px;
+}
+
+/* ----- Forms ---------------------------------------------------------------------------- */
+
+form {
+  position: relative;
+  width: 100%;
+  background-color: #FFFFFF;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+form fieldset {
+  padding: 10px 40px 40px 40px;
+  border: none;
+}
+
+form fieldset h2 {
+  width: 100%;
+  color: #464646;
+  padding-bottom: 8px;
+  text-align: center;
+  font-family: BigNoodleTitling;
+  font-size: 3.0em;
+  border-bottom: 1px solid #464646;
+  margin-bottom: 30px;
+}
+
+form fieldset label {
+  font-family: BigNoodleTitling;
+  font-size: 1.8em;
+  color: #464646;
+  margin-bottom: 12px;
+}
+
+form fieldset input[type="text"], form fieldset input[type="password"] {
+  width: 90%;
+  height: 33px;
+  color: #464646;
+  font-size: 1.4em;
+  background-color: #ECF0F1;
+  padding: 0px 24px 0px 12px;
+  border: none;
+  outline: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+form fieldset textarea{
+  width: 90%;
+  color: #464646;
+  font-size: 1.4em;
+  background-color: #ECF0F1;
+  padding: 8px 24px 0px 12px;
+  border: none;
+  outline: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+form fieldset input[type="submit"] {
+  margin: 16px 0px 0px 0px;
+  border: none;
+}
+
+form fieldset input[type="submit"] {
+  text-align: center;
+  font-size: 1.8em;
+  font-family: BigNoodleTitling;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin-top: 16px;
+  color: #FFFFFF;
+  background-color: #3AC6F4;
+  float: left;
+  text-decoration: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+}
+
+form fieldset select{
+  width: 90%;
+  height: 33px;
+  color: #464646;
+  font-size: 1.4em;
+  background-color: #ECF0F1;
+  padding: 0px 24px 0px 12px;
+  border: none;
+  outline: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+form fieldset input[type="submit"]:hover {
+  color: #FFFFFF;
+  background-color: #3AC6F4;
+}
+
+/* ----- Login ---------------------------------------------------------------------------- */
+
+#loginScreen {
+  position: fixed;
+  height: 370px;
+  width: 474px;
+  top: 50%;
+  left: 50%;
+  margin-top: -185px;
+  margin-left: -237px;
+}
+
+.adminScreen {
+  background-color: #FFFFFF;
+  /*box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.07);*/
+  border-radius: 0px;
+}
+
+.adminScreen header {
+  width: 100%;
+  height: 5px;
+  background-color: #3AC6F4;
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  border-top-left-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.adminScreen form fieldset #btnLogin{
+  margin-right: 6px;
+}
+
+.adminScreen form fieldset #btnLogin{
+  width: 100px;
+}
+
+/* ----- Catgories ---------------------------------------------------------------------------- */
+
+
+
+/* ----- Products ---------------------------------------------------------------------------- */
+
+article[id="content"]{
+  position: relative;
+  margin: 0 auto;
+  width: 960px;
+  margin-top: 140px;
+}
+
+article[id="content"] header > h1{
+  display: none;
+}
+
+article[id="content"] ul > li{
+  display: inline-block;
+}
+
+article[id="content"] .productSummary{
+  position: relative;
+  height: 80px;
+  width: 100%;
+  padding: 0;
+  background-color: #FFF;
+  border-right: 5px solid #3AC6F4;
+}
+
+.productSummary li{
+  position: relative;
+  height: 80px;
+  background-color: #FFF;
+  margin-right: 40px;
+  float: left;
+}
+
+.productSummary .thumbnail{
+  width: 80px;
+  height: 80px;
+  background-color: #02a99f;
+  background-position: center;
+  background-size: cover;
+}
+
+.productSummary .productNameDesc{
+  width: 180px;
+}
+
+.productSummary li h2{
+  font-size: 2.2em;
+  font-family: BigNoodleTitling;
+  color: #3AC6F4;
+  margin-top: 20px;
+}
+
+.productSummary li h2 a{
+  text-decoration: none;
+  color: #3AC6F4;
+}
+
+.productSummary li p{
+  font-size: 1.2em;
+  font-family: Tahoma;
+  color: rgb(46, 46, 46);
+  margin-top: -18px;
+}
+
+.productSummary li p{
+  font-size: 1.2em;
+  font-family: Tahoma;
+  color: rgb(46, 46, 46);
+  margin-top: -18px;
+}
+
+.productSummary li p a{
+  text-decoration: none;
+  text-transform: bold;
+}
+
+.productSummary li p a span[class="removeButton"]{
+  display: block;
+  padding: 8px 10px 2px 10px;
+  color: #FFF;
+  font-family: BigNoodleTitling;
+  font-size: 1.4em;
+  text-decoration: none;
+  text-transform: bold;
+  background-color: #EB5F52;
+  margin-top: 43px;
+}
+
+.productSummary li p a span[class="editButton"]{
+  display: block;
+  padding: 8px 10px 2px 10px;
+  color: #FFF;
+  font-family: BigNoodleTitling;
+  font-size: 1.4em;
+  text-decoration: none;
+  text-transform: bold;
+  background-color: #3AC6F4;
+  margin-top: 43px;
+}
+
+article[id="content"] #options{
+  position: relative;
+  margin-bottom: 40px;
+}
+
+article[id="content"] #options li{
+  margin-right: 4px;
+}
+
+article[id="content"] #options li a{
+  color: #FFF;
+  text-decoration: none;
+}
+
+article[id="content"] #options li a span{
+  font-family: BigNoodleTitling;
+  font-size: 2em;
+  padding: 10px 10px 5px 10px;
+  background-color: #3AC6F4;
+}
+
+/* ----- Products: Add Product ---------------------------------------------------------------------------- */
+
+#addProductScreen {
+  position: absolute;
+  height: 370px;
+  width: 474px;
+  top: 0px;
+  left: 50%;
+  margin-left: -237px;
+}
+
+#addProductScreen textarea{
+  height: 60px;
+}
+
+#addProductScreen ul[id="thumbList"]{
+  height: 60px;
+  margin-bottom: 16px;
+  padding: 0px;
+}
+
+#addProductScreen ul[id="thumbList"] li{
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background-color: #ECF0F1;
+  background-position: center;
+  background-size: cover;
+  margin-left: 0px;
+  margin-right: 5px;
+  float: left;
+}
+
+#addProductScreen ul[id="thumbList"] li[class="thumbnail"]{
+  box-shadow: inset 0 0 0 2px #3AC6F4;
+}
+
+#addProductScreen #btnImgUpload{
+  color: #FFF;
+  background-color: #3AC6F4;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  text-align: center;
+  font-family: BigNoodleTitling;
+  font-size: 1.5em;
+}
+
+#addProductScreen #btnImgUpload span{
+  display: block;
+  margin-top: 25px;
+}
