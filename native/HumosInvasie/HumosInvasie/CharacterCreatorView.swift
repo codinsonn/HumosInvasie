@@ -25,11 +25,12 @@ class CharacterCreatorView: UIView, UITextFieldDelegate {
         self.addSubview(bodyPartsContainer);
         
         self.txtNickname = UITextField();
-        self.txtNickname.frame = CGRect(x: 10, y: 10, width: 100, height: 25);
+        self.txtNickname.frame = CGRect(x: 10, y: 10, width: 160, height: 25);
         self.txtNickname.tintColor = UIColor.blackColor();
         self.txtNickname.textColor = UIColor.blackColor();
         self.txtNickname.backgroundColor = UIColor.whiteColor();
-        self.txtNickname.contentVerticalAlignment = UIControlContentVerticalAlignment.Top;
+        self.txtNickname.contentVerticalAlignment = UIControlContentVerticalAlignment.Center;
+        self.txtNickname.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center;
         self.txtNickname.text = "Nickname";
         self.txtNickname.delegate = self;
         self.txtNickname.alpha = 1;
@@ -39,6 +40,14 @@ class CharacterCreatorView: UIView, UITextFieldDelegate {
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        self.txtNickname.endEditing(true);
+        
+        return false;
+        
     }
 
 }

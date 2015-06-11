@@ -19,6 +19,8 @@ class MainViewController: UIViewController {
     var uitlaatVC : UitlaatViewController!;
     var kittenVC : KittenVisionViewController!;
     
+    var userCharData : CharacterData!;
+    
     var mainView:MainView {
         get{
             return self.view as! MainView;
@@ -58,12 +60,29 @@ class MainViewController: UIViewController {
         badgeButton3.alpha = 0;
         self.view.addSubview(badgeButton3);
         
-        self.creatorVC = CharacterCreatorViewController(nibName: nil, bundle: nil);
-        self.uitlaatVC = UitlaatViewController(nibName: nil, bundle: nil);
-        self.kittenVC = KittenVisionViewController(nibName: nil, bundle: nil);
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "presetsLoadedHandler:",
+            name: "PRESETS_LOADED",
+            object: nil
+        );
         
+        let delay = 7 * Double(NSEC_PER_SEC);
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay));
         
+        dispatch_after(time, dispatch_get_main_queue()) {
+            
+            self.uitlaatVC = UitlaatViewController(nibName: nil, bundle: nil);
+            self.kittenVC = KittenVisionViewController(nibName: nil, bundle: nil);
+            self.creatorVC = CharacterCreatorViewController(nibName: nil, bundle: nil);
+            
+        }
         
+    }
+    
+    func presetsLoadedHandler(notification: NSNotification){
+        
+        self.mainView.dismissPreloader();
         showBadges();
         
     }
@@ -133,6 +152,16 @@ class MainViewController: UIViewController {
         
         self.addChildViewController(kittenVC);
         self.view.addSubview(kittenVC.view);
+        
+    }
+    
+    deinit {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: "PRESETS_LOADED",
+            object: nil
+        );
         
     }
     

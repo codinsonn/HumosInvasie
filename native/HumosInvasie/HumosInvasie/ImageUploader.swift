@@ -68,7 +68,6 @@ class ImageUploader {
         // create url request to send
         var mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         mutableURLRequest.HTTPMethod = Alamofire.Method.POST.rawValue
-        //let boundaryConstant = "myRandomBoundary12345"
         let boundaryConstant = "NET-POST-boundary-\(arc4random())-\(arc4random())"
         let contentType = "multipart/form-data;boundary="+boundaryConstant
         mutableURLRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
@@ -85,8 +84,6 @@ class ImageUploader {
                 // add image
                 var postData = value as! NetData
                 
-                //uploadData.appendData("Content-Disposition: form-data; name=\"\(key)\"; filename=\"\(postData.filename)\"\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-                
                 // append content disposition
                 var filenameClause = " filename=\"\(postData.filename)\""
                 let contentDispositionString = "Content-Disposition: form-data; name=\"\(key)\";\(filenameClause)\r\n"
@@ -94,7 +91,6 @@ class ImageUploader {
                 uploadData.appendData(contentDispositionData!)
                 
                 // append content type
-                //uploadData.appendData("Content-Type: image/png\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!) // mark this.
                 let contentTypeString = "Content-Type: \(postData.mimeType.getString())\r\n\r\n"
                 let contentTypeData = contentTypeString.dataUsingEncoding(NSUTF8StringEncoding)
                 uploadData.appendData(contentTypeData!)

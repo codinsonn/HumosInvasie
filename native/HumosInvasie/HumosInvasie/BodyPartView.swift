@@ -21,6 +21,9 @@ class BodyPartView: UIScrollView {
     }
     
     func createBodyParts(bodyParts:Array<BodyPart>, frame:CGRect){
+        
+        println("[BodyPartView] --- createBodyParts --- ");
+        
         self.frame = frame
         var xPosition = 0
         
@@ -44,9 +47,9 @@ class BodyPartView: UIScrollView {
             //let pinch = UIPinchGestureRecognizer(target: self, action: "pinched:");
         }
         
-        contentSize = CGSizeMake(CGFloat(xPosition),0)
-        pagingEnabled = true
-        self.bounces = false
+        contentSize = CGSizeMake(CGFloat(xPosition),0);
+        pagingEnabled = true;
+        self.bounces = false;
         
     }
     

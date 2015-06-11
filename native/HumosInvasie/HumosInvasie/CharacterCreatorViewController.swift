@@ -18,6 +18,7 @@ class CharacterCreatorViewController: UIViewController {
         "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/presets/type/lower_body",
     ];
     let bodyPartSliderHeight = UIScreen.mainScreen().bounds.height/3;
+    var loadedUrls:Int = 0;
     
     // nog niet gebruikt tot nu toe
     var headPresetId:Int!;
@@ -73,6 +74,8 @@ class CharacterCreatorViewController: UIViewController {
         
         for url in self.bodyPartsApiArray{
             
+            var i:Int = 0;
+            
             Alamofire.request(.GET, url).responseJSON{(_,_,data,_)in
                 
                 println(url)
@@ -96,6 +99,15 @@ class CharacterCreatorViewController: UIViewController {
                     bodyParts: bodyParts,
                     frame: CGRectMake(0, yPos, UIScreen.mainScreen().bounds.width, self.bodyPartSliderHeight)
                 ).view);
+                
+                self.loadedUrls += 1;
+                println("[CreatorVC] Loading bodyparts \(self.loadedUrls)");
+                if(self.loadedUrls >= 3){
+                    NSNotificationCenter.defaultCenter().postNotificationName(
+                        "PRESETS_LOADED",
+                        object: nil
+                    );
+                }
                 
             }
             
