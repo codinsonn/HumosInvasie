@@ -35,6 +35,10 @@
 		3A8E37F21B28DDC900FD5B52 /* QRReplaceImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37F11B28DDC900FD5B52 /* QRReplaceImageViewController.swift */; };
 		3A8E37F41B28E0F600FD5B52 /* QRReplaceImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37F31B28E0F600FD5B52 /* QRReplaceImageView.swift */; };
 		3A8E37F61B28E87500FD5B52 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37F51B28E87500FD5B52 /* MainView.swift */; };
+		3A96E56A1B29A92900B1C22E /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A96E5681B29A92900B1C22E /* Gifu.framework */; };
+		3A96E56B1B29A92900B1C22E /* Gifu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A96E5681B29A92900B1C22E /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A96E56C1B29A92900B1C22E /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A96E5691B29A92900B1C22E /* Runes.framework */; };
+		3A96E56D1B29A92900B1C22E /* Runes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A96E5691B29A92900B1C22E /* Runes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +94,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				3A1FFFF41B28149D00AC9419 /* Alamofire.framework in Embed Frameworks */,
+				3A96E56D1B29A92900B1C22E /* Runes.framework in Embed Frameworks */,
+				3A96E56B1B29A92900B1C22E /* Gifu.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +134,8 @@
 		3A8E37F11B28DDC900FD5B52 /* QRReplaceImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReplaceImageViewController.swift; sourceTree = "<group>"; };
 		3A8E37F31B28E0F600FD5B52 /* QRReplaceImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReplaceImageView.swift; sourceTree = "<group>"; };
 		3A8E37F51B28E87500FD5B52 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		3A96E5681B29A92900B1C22E /* Gifu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gifu.framework; path = Carthage/Build/iOS/Gifu.framework; sourceTree = "<group>"; };
+		3A96E5691B29A92900B1C22E /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A1FFFF31B28149D00AC9419 /* Alamofire.framework in Frameworks */,
+				3A96E56C1B29A92900B1C22E /* Runes.framework in Frameworks */,
+				3A96E56A1B29A92900B1C22E /* Gifu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +162,8 @@
 		3A1FFFA91B28143500AC9419 = {
 			isa = PBXGroup;
 			children = (
+				3A96E5681B29A92900B1C22E /* Gifu.framework */,
+				3A96E5691B29A92900B1C22E /* Runes.framework */,
 				3A1FFFE41B28149400AC9419 /* Alamofire.xcodeproj */,
 				3A1FFFB41B28143500AC9419 /* HumosInvasie */,
 				3A1FFFC71B28143500AC9419 /* HumosInvasieTests */,
@@ -561,6 +573,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = HumosInvasie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -571,6 +587,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = HumosInvasie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

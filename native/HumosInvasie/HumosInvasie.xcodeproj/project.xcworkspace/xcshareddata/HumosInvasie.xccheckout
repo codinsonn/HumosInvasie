@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CF01C021-E248-4E23-A9C6-1E53A5F42C85</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HumosInvasie</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8DE9C2061C7D3C6791F6CCFFC6CFD383A896774F</key>
+		<string>https://github.com/ThorrStevens/HumosInvasie</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>native/HumosInvasie/HumosInvasie.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8DE9C2061C7D3C6791F6CCFFC6CFD383A896774F</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ThorrStevens/HumosInvasie</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8DE9C2061C7D3C6791F6CCFFC6CFD383A896774F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8DE9C2061C7D3C6791F6CCFFC6CFD383A896774F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>v02</string>
+		</dict>
+	</array>
+</dict>
+</plist>

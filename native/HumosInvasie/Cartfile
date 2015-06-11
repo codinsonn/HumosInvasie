@@ -1,0 +1,5 @@
+# Runes for Gifu framework
+github "thoughtbot/runes"
+
+# Gifu Framework
+github "kaishin/gifu"
