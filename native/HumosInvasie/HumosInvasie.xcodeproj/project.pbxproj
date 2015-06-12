@@ -41,6 +41,7 @@
 		3A96E56D1B29A92900B1C22E /* Runes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A96E5691B29A92900B1C22E /* Runes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A96E5721B29A9FD00B1C22E /* CharHeadBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A96E5711B29A9FD00B1C22E /* CharHeadBg.gif */; };
 		3A96E5741B29BB0000B1C22E /* LogoPreloader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A96E5731B29BB0000B1C22E /* LogoPreloader.gif */; };
+		3A96E5761B2A136900B1C22E /* CharacterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A96E5751B2A136900B1C22E /* CharacterFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,7 @@
 		3A96E5691B29A92900B1C22E /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 		3A96E5711B29A9FD00B1C22E /* CharHeadBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CharHeadBg.gif; sourceTree = "<group>"; };
 		3A96E5731B29BB0000B1C22E /* LogoPreloader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LogoPreloader.gif; sourceTree = "<group>"; };
+		3A96E5751B2A136900B1C22E /* CharacterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 			children = (
 				3A8E37CB1B2840C700FD5B52 /* CharacterCreatorViewController.swift */,
 				3A8E37CA1B2840C700FD5B52 /* CharacterCreatorView.swift */,
+				3A96E5751B2A136900B1C22E /* CharacterFactory.swift */,
 				3A8E37DC1B28418E00FD5B52 /* CharacterData.swift */,
 				3A8E37EA1B28C7CF00FD5B52 /* BodyPartViewController.swift */,
 				3A8E37E91B28C7CF00FD5B52 /* BodyPartView.swift */,
@@ -449,6 +452,7 @@
 				3A8E37E01B287DE300FD5B52 /* NetData.swift in Sources */,
 				3A8E37D41B28413400FD5B52 /* UitlaatPostsFactory.swift in Sources */,
 				3A8E37D31B28413400FD5B52 /* UitlaatData.swift in Sources */,
+				3A96E5761B2A136900B1C22E /* CharacterFactory.swift in Sources */,
 				3A8E37DA1B28416A00FD5B52 /* KittenVisionView.swift in Sources */,
 				3A8E37EB1B28C7CF00FD5B52 /* BodyPartView.swift in Sources */,
 				3A8E37F41B28E0F600FD5B52 /* QRReplaceImageView.swift in Sources */,

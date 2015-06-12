@@ -11,7 +11,9 @@ import Alamofire
 import CoreLocation
 
 class UitlaatViewController: UIViewController {
-
+    
+    var charData:CharacterData!;
+    
     var uitlaatView:UitlaatView {
         get{
             return self.view as! UitlaatView;
@@ -28,6 +30,13 @@ class UitlaatViewController: UIViewController {
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setCharacterData(userData:CharacterData){
+        
+        self.charData = userData;
+        self.uitlaatView.updateCharacterButton(self.charData.image);
+        
     }
     
     override func loadView() {

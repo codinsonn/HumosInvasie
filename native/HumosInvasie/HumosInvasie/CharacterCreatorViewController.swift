@@ -25,6 +25,8 @@ class CharacterCreatorViewController: UIViewController {
     var upperPresetId:Int!;
     var lowerPresetId:Int!;
     
+    var charData:CharacterData!;
+    
     var creatorView:CharacterCreatorView {
         get{
             return self.view as! CharacterCreatorView;
@@ -43,6 +45,13 @@ class CharacterCreatorViewController: UIViewController {
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setCharacterData(userData:CharacterData){
+        
+        self.charData = userData;
+        self.creatorView.txtNickname.text = self.charData.nickname;
+        
     }
     
     override func loadView() {
@@ -101,7 +110,6 @@ class CharacterCreatorViewController: UIViewController {
                 ).view);
                 
                 self.loadedUrls += 1;
-                println("[CreatorVC] Loading bodyparts \(self.loadedUrls)");
                 if(self.loadedUrls >= 3){
                     NSNotificationCenter.defaultCenter().postNotificationName(
                         "PRESETS_LOADED",
@@ -150,18 +158,19 @@ class CharacterCreatorViewController: UIViewController {
     
     func avatarUploadedHandler(notification: NSNotification) {
         
-        let img_id = notification.userInfo!["img_id"] as! Int;
+        let char_img_id = notification.userInfo!["img_id"] as! Int;
         var parameters = [
-            "char_img_id": img_id,
+            "char_img_id": char_img_id,
             "nickname": self.creatorView.txtNickname.text as String,
             "head_preset_id": 0,
             "upper_body_preset_id": 0,
             "lower_body_preset_id": 0
         ];
+        var char_id:Int = 0;
         
         if( NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter") ){
             
-            var char_id = NSUserDefaults.standardUserDefaults().integerForKey("userCharacterId");
+            char_id = NSUserDefaults.standardUserDefaults().integerForKey("userCharacterId");
             var apiEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/characters/\(char_id)/";
             
             println("[CharVC] Saving edited character to database (User ID = \(char_id))");
@@ -179,6 +188,11 @@ class CharacterCreatorViewController: UIViewController {
                     {
                         let post = JSON(data);
                         println("The put is: " + post.description);
+                        
+                        NSNotificationCenter.defaultCenter().postNotificationName(
+                            "CHARACTER_UPDATED",
+                            object: nil
+                        );
                     }
             }
             
@@ -200,12 +214,16 @@ class CharacterCreatorViewController: UIViewController {
                         let post = JSON(data);
                         println("The post is: " + post.description);
                         
-                        var char_id = post["id"].intValue;
+                        char_id = post["id"].intValue;
                         
                         NSUserDefaults.standardUserDefaults().setInteger(char_id, forKey: "userCharacterId");
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasCreatedCharacter");
                         NSUserDefaults.standardUserDefaults().synchronize();
                         
+                        NSNotificationCenter.defaultCenter().postNotificationName(
+                            "CHARACTER_UPDATED",
+                            object: nil
+                        );
                     }
             }
             

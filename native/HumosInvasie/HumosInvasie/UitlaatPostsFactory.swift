@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TourFactory: NSObject {
+class UitlaatPostsFactory: NSObject {
     
     class func createFromJSONData( data:NSData ) -> Array<UitlaatData> {
         

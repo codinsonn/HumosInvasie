@@ -38,19 +38,19 @@ class QRReplaceImageView: UIView {
     }
     
     func makeImage(url:String, avatar:QRReplaceImageModel){
-        println("making image")
+        
+        println("[QRReplaceImgView] Making image")
+        
         self.myId = avatar.id
         
-        let url = NSURL(string: url + String(avatar.imageUrl))
-        println(url)
-        let data = NSData(contentsOfURL: url!)
-        let image = UIImage(data: data!)
-        self.imageView = UIImageView(image: image)
-        self.imageView.contentMode = UIViewContentMode.Center
-        self.imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        var image:UIImage = ImageUploader.createImageFromUrlAndFilename(url, imgname: String(avatar.imageUrl));
+        
+        self.imageView = UIImageView(image: image);
+        self.imageView.contentMode = UIViewContentMode.Center;
+        self.imageView.contentMode = UIViewContentMode.ScaleAspectFit;
 
-
-        self.addSubview(imageView)
+        self.addSubview(imageView);
+        
     }
     
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class CharacterData: NSObject {
     
@@ -17,6 +18,7 @@ class CharacterData: NSObject {
     var upper_body_preset_id:Int;
     var lower_body_preset_id:Int;
     var imageName:String;
+    var image:UIImage!;
     
     override var description:String {
         get {
@@ -33,6 +35,8 @@ class CharacterData: NSObject {
         self.upper_body_preset_id = upper_body_preset_id;
         self.lower_body_preset_id = lower_body_preset_id;
         self.imageName = imageName;
+        
+        self.image = ImageUploader.createImageFromUrlAndFilename("http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/img/uploads/characters/", imgname: self.imageName);
         
         super.init();
         

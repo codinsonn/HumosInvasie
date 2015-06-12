@@ -63,6 +63,18 @@ class ImageUploader {
         
     }
     
+    class func createImageFromUrlAndFilename(imgdir:String, imgname:String) -> UIImage{
+        
+        println("[ImageUploader] Creating Image from \(imgdir)\(imgname)");
+        
+        let url = NSURL(string: imgdir + String(imgname));
+        let data = NSData(contentsOfURL: url!);
+        let image = UIImage(data: data!);
+    
+        return image!;
+        
+    }
+    
     class func urlRequestWithComponents(urlString:String, parameters:NSDictionary) -> (URLRequestConvertible, NSData) {
         
         // create url request to send

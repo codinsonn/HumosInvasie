@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     var uitlaatVC : UitlaatViewController!;
     var kittenVC : KittenVisionViewController!;
     
-    var userCharData : CharacterData!;
+    var userCharData:CharacterData!;
     
     var mainView:MainView {
         get{
@@ -67,15 +67,59 @@ class MainViewController: UIViewController {
             object: nil
         );
         
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "characterUpdatedHandler:",
+            name: "CHARACTER_UPDATED",
+            object: nil
+        );
+        
         // Let preloader loop at least once
-        let delay = 4 * Double(NSEC_PER_SEC);
+        let delay = 3 * Double(NSEC_PER_SEC);
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay));
         
         dispatch_after(time, dispatch_get_main_queue()) {
             
+            self.creatorVC = CharacterCreatorViewController(nibName: nil, bundle: nil);
             self.uitlaatVC = UitlaatViewController(nibName: nil, bundle: nil);
             self.kittenVC = KittenVisionViewController(nibName: nil, bundle: nil);
-            self.creatorVC = CharacterCreatorViewController(nibName: nil, bundle: nil);
+            
+            self.checkUserData();
+            
+        }
+        
+    }
+    
+    func characterUpdatedHandler(notification: NSNotification){
+        
+        self.checkUserData();
+        
+    }
+    
+    func checkUserData(){
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter"){
+            
+            var char_id = NSUserDefaults.standardUserDefaults().integerForKey("userCharacterId");
+            
+            println("[MainVC] Loading Character (ID = \(char_id))");
+            
+            var requestUrl = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/characters/\(char_id)/";
+            
+            Alamofire.request(.GET, requestUrl).responseJSON{(_,_,data,_)in
+                
+                println("[MainVC] Character api response: \(data!)");
+                
+                let jsonData = JSON(data!);
+                
+                var err:NSErrorPointer! = NSErrorPointer();
+                let userData = NSJSONSerialization.dataWithJSONObject(jsonData.object, options: nil, error: err);
+                
+                self.userCharData = CharacterFactory.createCharacterFromJSONData(userData!);
+                self.creatorVC.setCharacterData(self.userCharData);
+                self.uitlaatVC.setCharacterData(self.userCharData);
+                
+            }
             
         }
         
@@ -105,10 +149,14 @@ class MainViewController: UIViewController {
         UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: {
             
             self.badgeButton1.alpha = 1;
-            self.badgeButton2.alpha = 1;
-            self.badgeButton3.alpha = 1;
             
-            }, completion: nil);
+            // Only show 2nd and 3rd buttons/badges when a character has been created and saved to the device and database
+            if NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter"){
+                self.badgeButton2.alpha = 1;
+                self.badgeButton3.alpha = 1;
+            }
+            
+        }, completion: nil);
     }
     
     func hideBadgess(){
@@ -118,7 +166,7 @@ class MainViewController: UIViewController {
             self.badgeButton2.alpha = 0;
             self.badgeButton3.alpha = 0;
             
-            }, completion: nil)
+        }, completion: nil)
     }
     
     func badge1Tapped(){
@@ -161,6 +209,12 @@ class MainViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(
             self,
             name: "PRESETS_LOADED",
+            object: nil
+        );
+        
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: "CHARACTER_UPDATED",
             object: nil
         );
         

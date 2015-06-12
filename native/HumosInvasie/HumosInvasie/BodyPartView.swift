@@ -22,7 +22,7 @@ class BodyPartView: UIScrollView {
     
     func createBodyParts(bodyParts:Array<BodyPart>, frame:CGRect){
         
-        println("[BodyPartView] --- createBodyParts --- ");
+        //println("[BodyPartView] --- createBodyParts --- ");
         
         self.frame = frame
         var xPosition = 0

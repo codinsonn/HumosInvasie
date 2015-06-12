@@ -69,6 +69,11 @@ class UitlaatView: UIView, UITextFieldDelegate {
         
     }
     
+    func updateCharacterButton(image: UIImage){
+        self.characterHead.frame = CGRect(x: -8, y: 230, width: 90, height: 266);
+        self.characterHead.setBackgroundImage(image, forState: .Normal);
+    }
+    
     func postButtonTapped(){
         
         println("[UitlaatView] Post Button Tapped.");
@@ -124,7 +129,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
         
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.characterHead.frame = CGRectMake(-8, 10, 90, 90);
+            self.characterHead.frame = CGRectMake(-8, 10, 90, 266);
             self.uitlaatBgImgView.transform = CGAffineTransformTranslate(self.uitlaatBgImgView.transform, 0, -40);
             self.inputField.transform = CGAffineTransformTranslate(self.inputField.transform, 0, -40);
             
@@ -138,7 +143,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
         
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.characterHead.frame = CGRectMake(-8, 40, 90, 90);
+            self.characterHead.frame = CGRectMake(-8, 40, 90, 266);
             self.uitlaatBgImgView.transform = CGAffineTransformTranslate(self.uitlaatBgImgView.transform, 0, 40);
             self.inputField.transform = CGAffineTransformTranslate(self.inputField.transform, 0, 40);
             
@@ -162,7 +167,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
         
         UIView.animateWithDuration(0.7, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.characterHead.frame = CGRectMake(-8, 40, 90, 90);
+            self.characterHead.frame = CGRectMake(-8, 40, 90, 266);
             
         }, completion: nil);
         
@@ -210,7 +215,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
         
         UIView.animateWithDuration(0.7, delay: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.characterHead.frame = CGRectMake(-8, 230, 90, 90);
+            self.characterHead.frame = CGRectMake(-8, 230, 90, 266);
             
         }, completion: nil);
         
