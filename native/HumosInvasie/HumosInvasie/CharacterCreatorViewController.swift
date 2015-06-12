@@ -152,32 +152,35 @@ class CharacterCreatorViewController: UIViewController {
         
         ImageUploader.uploadImage(saveImageView, uploaddir: "/uploads/characters/");
         
-        self.creatorView.addSubview(saveImageView);
+        //self.creatorView.addSubview(saveImageView);
         
     }
     
     func avatarUploadedHandler(notification: NSNotification) {
         
         let char_img_id = notification.userInfo!["img_id"] as! Int;
-        var parameters = [
-            "char_img_id": char_img_id,
-            "nickname": self.creatorView.txtNickname.text as String,
-            "head_preset_id": 0,
-            "upper_body_preset_id": 0,
-            "lower_body_preset_id": 0
-        ];
         var char_id:Int = 0;
+        
+        //NSUserDefaults.standardUserDefaults().setBool(false, forKey: "hasCreatedCharacter");
         
         if( NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter") ){
             
             char_id = NSUserDefaults.standardUserDefaults().integerForKey("userCharacterId");
-            var apiEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/characters/\(char_id)/";
+            var apiEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/characters/update/";
+            var parameters = [
+                "id": char_id,
+                "char_img_id": char_img_id,
+                "nickname": self.creatorView.txtNickname.text as String,
+                "head_preset_id": 0,
+                "upper_body_preset_id": 0,
+                "lower_body_preset_id": 0
+            ];
             
             println("[CharVC] Saving edited character to database (User ID = \(char_id))");
             
             println("---- [CharVC] Parameters: \(parameters) ------------");
             
-            Alamofire.request(.PUT, apiEndpoint, parameters: parameters as! [String : AnyObject], encoding: .JSON)
+            Alamofire.request(.POST, apiEndpoint, parameters: parameters as! [String : AnyObject], encoding: .JSON)
                 .responseJSON { (request, response, data, error) in
                     if let anError = error
                     {
@@ -201,6 +204,13 @@ class CharacterCreatorViewController: UIViewController {
             println("[CharVC] Saving created character to device and database");
             
             var apiEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/characters/";
+            var parameters = [
+                "char_img_id": char_img_id,
+                "nickname": self.creatorView.txtNickname.text as String,
+                "head_preset_id": 0,
+                "upper_body_preset_id": 0,
+                "lower_body_preset_id": 0
+            ];
             
             Alamofire.request(.POST, apiEndpoint, parameters: parameters as! [String : AnyObject], encoding: .JSON)
                 .responseJSON { (request, response, data, error) in
