@@ -19,7 +19,7 @@ class CharacterCreatorViewController: UIViewController {
     ];
     let bodyPartSliderHeight = UIScreen.mainScreen().bounds.height/3;
     var loadedUrls:Int = 0;
-    
+    //change
     // nog niet gebruikt tot nu toe
     var headPresetId:Int!;
     var upperPresetId:Int!;
