@@ -30,13 +30,13 @@ class AlamoFactory {
     }
 
     class func createAvatarPreviewsFromJSONData(data:JSON) -> QRReplaceImageModel {
-        
-        var qRReplaceImageModel:QRReplaceImageModel
-        qRReplaceImageModel = QRReplaceImageModel(id: data["id"].intValue, imageUrl: data["filename"].stringValue);
-        
-        return qRReplaceImageModel;
-        
-    }
+            var qRReplaceImageModel:QRReplaceImageModel
+            qRReplaceImageModel = QRReplaceImageModel(id: data["id"].intValue, imageUrl: data["filename"].stringValue);
+            return qRReplaceImageModel;
+        }
+    
+    
+}
 
    
-}
+

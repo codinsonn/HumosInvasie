@@ -18,8 +18,8 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
     var QRSerializer:Array<AnyObject> = [];
     var avatarImageArray:Array<UIImageView> = [];
     
-    var url:String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/presets/";
-    var imgUrl:String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/img/presets/";
+    var url:String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/characters/";
+    var imgUrl:String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/img/uploads/characters/";
     
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
 
@@ -165,6 +165,7 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
             let qrReplacementImageVC:QRReplaceImageViewController;
             qrReplacementImageVC = QRReplaceImageViewController(avatar: avatar, url: self.imgUrl);
             self.view.addSubview(qrReplacementImageVC.view);
+            
             
         }
         
