@@ -9,16 +9,15 @@
 import Foundation
 import UIKit
 
-let ACTION_MARGIN = CGFloat(120) //%%% distance from center where the action applies. Higher = swipe further in order for the action to be called
+let ACTION_MARGIN = CGFloat(100) //%%% distance from center where the action applies. Higher = swipe further in order for the action to be called
 let SCALE_STRENGTH = CGFloat(4) //%%% how quickly the card shrinks. Higher = slower shrinking
 let SCALE_MAX = CGFloat(0.93) //%%% upper bar for how much the card shrinks. Higher = shrinks less
 let ROTATION_MAX = CGFloat(1) //%%% the maximum rotation allowed in radians.  Higher = card can keep rotating longer
 let ROTATION_STRENGTH = CGFloat(320) //%%% strength of rotation. Higher = weaker rotation
 let ROTATION_ANGLE = CGFloat(M_PI/8) //%%% Higher = stronger rotation angle
 
-
-class DraggableView:UIView{
-    var delegate:DraggableViewDelegate?
+class DraggableUitlaatView:UIView{
+    var delegate:DraggableUitlaatViewDelegate?
     
     var xFromCenter = CGFloat()
     var yFromCenter = CGFloat()
@@ -168,13 +167,6 @@ class DraggableView:UIView{
         }
         overlayView?.alpha = min(fabs(distance)/100, 0.4)
     }
-    func rightClickAction() {
-        rightAction()
-    }
-    
-    func leftClickAction() {
-        leftAction()
-    }
     
     func updateInformation(information: String) {
         self.information.frame = CGRectMake(0, 50, self.frame.size.width, 100)
@@ -184,10 +176,9 @@ class DraggableView:UIView{
         self.addSubview(self.information)
     }
     
-    
 }
 
-protocol DraggableViewDelegate {
-    func cardSwipedLeft(card: DraggableView)
-    func cardSwipedRight(card: DraggableView)
+protocol DraggableUitlaatViewDelegate {
+    func cardSwipedLeft(card: DraggableUitlaatView);
+    func cardSwipedRight(card: DraggableUitlaatView);
 }

@@ -18,16 +18,16 @@ class UitlaatView: UIView, UITextFieldDelegate {
     var characterHead : UIButton!;
     var showingInput : Int!;
     
-    var inputField : UITextField!;
+    var txtUitlaat : UITextField!;
     var postButton : UIButton!;
     
     var currentCharacterFrame : CGRect!;
     
+    var uitlaatContainer : DraggableUitlaatContainer!;
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame);
-        
-        //self.backgroundColor = UIColor.greenColor();
         
         println("[UitlaatView] Initialising View");
         
@@ -58,16 +58,25 @@ class UitlaatView: UIView, UITextFieldDelegate {
         self.postButton.alpha = 0;
         self.addSubview(postButton);
         
-        self.inputField = UITextField();
-        self.inputField.frame = CGRect(x: 130, y: 120, width: 320, height: 100);
-        self.inputField.tintColor = UIColor.whiteColor();
-        self.inputField.textColor = UIColor.whiteColor();
-        self.inputField.contentVerticalAlignment = UIControlContentVerticalAlignment.Top;
-        self.inputField.delegate = self;
-        self.inputField.alpha = 0;
-        self.addSubview(inputField);
+        self.txtUitlaat = UITextField();
+        self.txtUitlaat.frame = CGRect(x: 130, y: 120, width: 320, height: 100);
+        self.txtUitlaat.tintColor = UIColor.whiteColor();
+        self.txtUitlaat.textColor = UIColor.whiteColor();
+        self.txtUitlaat.contentVerticalAlignment = UIControlContentVerticalAlignment.Top;
+        self.txtUitlaat.delegate = self;
+        self.txtUitlaat.alpha = 0;
+        self.addSubview(txtUitlaat);
         
         showingInput = 0;
+        
+        
+    }
+    
+    func updateUitlaatContainer(uitlaatPostsContainer:DraggableUitlaatContainer){
+        
+        self.uitlaatContainer = uitlaatPostsContainer;
+        self.addSubview(self.uitlaatContainer);
+        
         hideInput();
         
     }
@@ -85,7 +94,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
         
         NSNotificationCenter.defaultCenter().postNotificationName(
             "POST_TAPPED",
-            object: self.inputField
+            object: self.txtUitlaat
         );
         
     }
@@ -108,7 +117,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
     
     func showPostButtonIfValid(delay:Double){
         
-        let strUitlaat = self.inputField.text;
+        let strUitlaat = self.txtUitlaat.text;
         
         if(count(strUitlaat) > 4){
             
@@ -138,7 +147,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
             
             self.characterHead.frame = self.currentCharacterFrame;
             self.uitlaatBgImgView.transform = CGAffineTransformTranslate(self.uitlaatBgImgView.transform, 0, -40);
-            self.inputField.transform = CGAffineTransformTranslate(self.inputField.transform, 0, -40);
+            self.txtUitlaat.transform = CGAffineTransformTranslate(self.txtUitlaat.transform, 0, -40);
             
         }, completion: nil);
         
@@ -146,14 +155,14 @@ class UitlaatView: UIView, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        self.inputField.endEditing(true);
+        self.txtUitlaat.endEditing(true);
         self.currentCharacterFrame = CGRectMake(-8, 40, 90, 266);
         
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.characterHead.frame = self.currentCharacterFrame;
             self.uitlaatBgImgView.transform = CGAffineTransformTranslate(self.uitlaatBgImgView.transform, 0, 40);
-            self.inputField.transform = CGAffineTransformTranslate(self.inputField.transform, 0, 40);
+            self.txtUitlaat.transform = CGAffineTransformTranslate(self.txtUitlaat.transform, 0, 40);
             
         }, completion: nil);
         
@@ -173,6 +182,8 @@ class UitlaatView: UIView, UITextFieldDelegate {
             self.charHeadBgImgAnim.transform = CGAffineTransformMakeScale(0.4, 0.4);
             self.charHeadBgImgAnim.startAnimating();
             
+            self.uitlaatContainer.alpha = 0;
+            
         }, completion: nil);
         
         UIView.animateWithDuration(0.7, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
@@ -190,7 +201,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
         
         UIView.animateWithDuration(0.4, delay: 0.8, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.inputField.alpha = 1;
+            self.txtUitlaat.alpha = 1;
             self.showPostButtonIfValid(0.8);
             
         }, completion: nil);
@@ -199,7 +210,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
     
     func hideInput(){
         
-        self.inputField.endEditing(true);
+        self.txtUitlaat.endEditing(true);
         self.currentCharacterFrame = CGRectMake(-8, 230, 90, 266);
         
         UIView.animateWithDuration(0.4, delay: 0.8, options: UIViewAnimationOptions.CurveEaseOut, animations: {
@@ -208,11 +219,13 @@ class UitlaatView: UIView, UITextFieldDelegate {
             self.charHeadBgImgAnim.transform = CGAffineTransformMakeScale(1, 1);
             self.charHeadBgImgAnim.startAnimating();
             
+            self.uitlaatContainer.alpha = 1;
+            
         }, completion: nil);
         
         UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.inputField.alpha = 0;
+            self.txtUitlaat.alpha = 0;
             self.postButton.alpha = 0;
             
         }, completion: nil);

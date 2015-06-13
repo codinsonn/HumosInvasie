@@ -13,6 +13,7 @@ import CoreLocation
 class UitlaatViewController: UIViewController {
     
     var charData:CharacterData!;
+    var uitlaatContainer:DraggableUitlaatContainer!;
     
     var uitlaatView:UitlaatView {
         get{
@@ -69,28 +70,30 @@ class UitlaatViewController: UIViewController {
             self,
             selector: "postUitlaat:",
             name: "POST_TAPPED",
-            object: self.uitlaatView.inputField
+            object: self.uitlaatView.txtUitlaat
         );
+        
+        self.uitlaatContainer = DraggableUitlaatContainer(frame: CGRectMake(100, 0, 368, 300));
+        self.uitlaatView.updateUitlaatContainer(uitlaatContainer);
         
     }
     
     func postUitlaat(notification:NSNotification){
         
-        let alert = UIAlertController(title: "Waarschijnlijk dronken", message: "Zeker dat u dit bericht wil posten? \n -\"\(self.uitlaatView.inputField.text)\"-", preferredStyle: UIAlertControllerStyle.Alert);
-        
+        let alert = UIAlertController(title: "Waarschijnlijk dronken", message: "Zeker dat u dit bericht wil posten? \n -\"\(self.uitlaatView.txtUitlaat.text)\"-", preferredStyle: UIAlertControllerStyle.Alert);
         let yesAction = UIAlertAction(title: "euh...ja zeker?", style: UIAlertActionStyle.Default) { (action) -> Void in
             
-            println("[UitlaatVC] Posting message: \(self.uitlaatView.inputField.text)");
+            println("[UitlaatVC] Posting message: \(self.uitlaatView.txtUitlaat.text)");
             
-            var locManager = CLLocationManager()
-            locManager.requestWhenInUseAuthorization()
+            var locManager = CLLocationManager();
+            locManager.requestWhenInUseAuthorization();
             var latitude = 50.960406;
             var longitude = 5.354287;
             var currentLocation = CLLocation();
             
             if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
                 CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways
-                ){
+            ){
                     
                     currentLocation = locManager.location;
                     
@@ -100,7 +103,7 @@ class UitlaatViewController: UIViewController {
             }
             
             var postsEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/uitlaat/"
-            var parameters = ["character_id": 0, "title": "Pukkelpop 2015", "message": self.uitlaatView.inputField.text, "latitude": latitude, "longitude": longitude];
+            var parameters = ["character_id": 0, "title": "Pukkelpop 2015", "message": self.uitlaatView.txtUitlaat.text, "latitude": latitude, "longitude": longitude];
             Alamofire.request(.POST, postsEndpoint, parameters: parameters as! [String : AnyObject], encoding: .JSON)
                 .responseJSON { (request, response, data, error) in
                     if let anError = error
@@ -116,7 +119,7 @@ class UitlaatViewController: UIViewController {
                         let successAlert = UIAlertController(title: "Success!", message: "Je uitlaatbericht is met succes gepost.\n Dansen dansen!", preferredStyle: UIAlertControllerStyle.Alert);
                         self.presentViewController(successAlert, animated: true, completion: nil);
                         
-                        self.uitlaatView.inputField.text = "";
+                        self.uitlaatView.txtUitlaat.text = "";
                         self.uitlaatView.hideInput();
                         
                         let delay = 0.9 * Double(NSEC_PER_SEC);
@@ -137,7 +140,7 @@ class UitlaatViewController: UIViewController {
             
             println("[UitlaatVC] Post was destroyed.");
             
-            self.uitlaatView.inputField.text = "";
+            self.uitlaatView.txtUitlaat.text = "";
             self.uitlaatView.hideInput();
             
         }
@@ -156,7 +159,7 @@ class UitlaatViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(
             self,
             name: "POST_TAPPED",
-            object: self.uitlaatView.inputField
+            object: self.uitlaatView.txtUitlaat
         );
         
     }

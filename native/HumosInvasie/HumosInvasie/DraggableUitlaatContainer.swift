@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 
-class DraggableViewBackground: UIView, DraggableViewDelegate {
+class DraggableUitlaatContainer: UIView, DraggableUitlaatViewDelegate {
     
     let MAX_BUFFER_SIZE = 2;
-    let CARD_HEIGHT = CGFloat(386.0);
-    let CARD_WIDTH = CGFloat(290.0);
+    let CARD_HEIGHT = CGFloat(260.0);
+    let CARD_WIDTH = CGFloat(320.0);
     
     let menuButton = UIButton()
     let messageButton = UIButton()
@@ -33,49 +33,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         super.layoutSubviews()
-        setupView()
         setLoadedCardsCap()
         createCards()
         displayCards()
-    }
-    
-    func setupView() {
-        setBackgroundColor()
-        addMenuButton()
-        addMessageButton()
-        addXButton()
-        addCheckButton()
-    }
-    
-    func setBackgroundColor() {
-        self.backgroundColor = UIColor(red: 0.92, green: 0.93, blue: 0.95, alpha: 1);
-    }
-    
-    func addMenuButton() {
-        menuButton.frame = CGRectMake(17, 34, 22, 15);
-        menuButton.setImage(UIImage(named: "menuButton"), forState: .Normal)
-        addSubview(menuButton)
-    }
-    
-    func addMessageButton() {
-        self.messageButton.frame = CGRectMake(284, 34, 18, 18)
-        self.messageButton.setImage(UIImage(named: "messageButton"), forState: .Normal)
-        self.addSubview(messageButton)
-    }
-    
-    func addXButton() {
-        xButton.frame = CGRectMake(60, 485, 59, 59)
-        xButton.setImage(UIImage(named: "xButton"), forState: .Normal)
-        xButton.addTarget(self, action: "swipeLeft", forControlEvents: .TouchUpInside)
-        addSubview(xButton)
-    }
-    
-    func addCheckButton() {
-        checkButton.frame = CGRectMake(200, 485, 59, 59)
-        checkButton.setImage(UIImage(named: "checkButton"), forState: .Normal)
-        checkButton.addTarget(self, action: "swipeRight",
-            forControlEvents: .TouchUpInside)
-        addSubview(checkButton)
     }
     
     func setLoadedCardsCap() {
@@ -90,10 +50,10 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     func createCards() {
         if (numLoadedCardsCap > 0) {
-            let cardFrame = CGRectMake((self.frame.size.width - CARD_WIDTH)/2, (self.frame.size.height - CARD_HEIGHT)/2, CARD_WIDTH, CARD_HEIGHT)
+            let cardFrame = CGRectMake((self.frame.size.width - CARD_WIDTH)/2, (self.frame.size.height - CARD_HEIGHT)/2 + 20, CARD_WIDTH, CARD_HEIGHT)
             
             for cardLabel in exampleCardLabels {
-                var newCard = DraggableView(frame: cardFrame, information: cardLabel)
+                var newCard = DraggableUitlaatView(frame: cardFrame, information: cardLabel)
                 newCard.delegate = self;
                 allCards.addObject(newCard)
             }
@@ -106,11 +66,11 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         }
     }
     
-    func cardSwipedLeft(card: DraggableView) {
+    func cardSwipedLeft(card: DraggableUitlaatView) {
         processCardSwipe()
     }
     
-    func cardSwipedRight(card: DraggableView) {
+    func cardSwipedRight(card: DraggableUitlaatView) {
         processCardSwipe()
     }
 
@@ -134,24 +94,24 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func loadACardAt(index: Int) {
         loadedCards.addObject(allCards[index])
         if (loadedCards.count > 1) {
-            insertSubview(loadedCards[loadedCards.count-1] as! DraggableView, belowSubview: loadedCards[loadedCards.count-2] as! DraggableView)
+            insertSubview(loadedCards[loadedCards.count-1] as! DraggableUitlaatView, belowSubview: loadedCards[loadedCards.count-2] as! DraggableUitlaatView)
             // is there a way to define the array with UIView elements so I don't have to cast?
         } else {
-            addSubview(loadedCards[0] as! DraggableView)
+            addSubview(loadedCards[0] as! DraggableUitlaatView)
         }
         cardsLoadedIndex++;
     }
     
     func swipeRight() {
-        let dragView = loadedCards[0] as! DraggableView
+        let dragView = loadedCards[0] as! DraggableUitlaatView
         print ("Clicked right")
-        dragView.rightClickAction()
+        dragView.rightAction()
     }
     
     func swipeLeft() {
-        let dragView = loadedCards[0] as! DraggableView
+        let dragView = loadedCards[0] as! DraggableUitlaatView
         print ("clicked left")
-        dragView.leftClickAction()
+        dragView.leftAction()
     }
     
 

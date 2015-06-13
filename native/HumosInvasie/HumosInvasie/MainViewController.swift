@@ -21,6 +21,9 @@ class MainViewController: UIViewController {
     
     var userCharData:CharacterData!;
     
+    var presetsLoaded:Bool!;
+    var preloaderLoopedOnce:Bool!;
+    
     var mainView:MainView {
         get{
             return self.view as! MainView;
@@ -28,6 +31,9 @@ class MainViewController: UIViewController {
     }
     
     override func loadView() {
+        
+        self.presetsLoaded = false;
+        self.preloaderLoopedOnce = false;
         
         self.view = MainView(frame: UIScreen.mainScreen().bounds);
         
@@ -74,10 +80,8 @@ class MainViewController: UIViewController {
             object: nil
         );
         
-        // Let preloader loop at least once
-        let delay = 3 * Double(NSEC_PER_SEC);
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay));
-        
+        var delay = 1 * Double(NSEC_PER_SEC);
+        var time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay));
         dispatch_after(time, dispatch_get_main_queue()) {
             
             self.creatorVC = CharacterCreatorViewController(nibName: nil, bundle: nil);
@@ -85,6 +89,16 @@ class MainViewController: UIViewController {
             self.kittenVC = KittenVisionViewController(nibName: nil, bundle: nil);
             
             self.checkUserData();
+            
+        }
+        
+        // Let preloader loop at least once
+        delay = 5 * Double(NSEC_PER_SEC);
+        time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay));
+        dispatch_after(time, dispatch_get_main_queue()) {
+            
+            self.preloaderLoopedOnce = true;
+            self.initIfPresetsLoaded();
             
         }
         
@@ -127,8 +141,17 @@ class MainViewController: UIViewController {
     
     func presetsLoadedHandler(notification: NSNotification){
         
-        self.mainView.dismissPreloader();
-        showBadges();
+        self.presetsLoaded = true;
+        self.initIfPresetsLoaded();
+        
+    }
+    
+    func initIfPresetsLoaded(){
+        
+        if(self.presetsLoaded == true && self.preloaderLoopedOnce == true){
+            self.mainView.dismissPreloader();
+            showBadges();
+        }
         
     }
     
