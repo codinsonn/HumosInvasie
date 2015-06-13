@@ -113,9 +113,17 @@ class UitlaatViewController: UIViewController {
                         let post = JSON(data);
                         println("The post is: " + post.description);
                         
-                        let successAlert = UIAlertController(title: "Success!", message: "Je uitlaatbericht is met succes gepost. Dansen dansen!", preferredStyle: UIAlertControllerStyle.Alert);
+                        let successAlert = UIAlertController(title: "Success!", message: "Je uitlaatbericht is met succes gepost.\n Dansen dansen!", preferredStyle: UIAlertControllerStyle.Alert);
                         self.presentViewController(successAlert, animated: true, completion: nil);
                         
+                        self.uitlaatView.inputField.text = "";
+                        self.uitlaatView.hideInput();
+                        
+                        let delay = 0.9 * Double(NSEC_PER_SEC);
+                        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay));
+                        dispatch_after(time, dispatch_get_main_queue()) {
+                            successAlert.dismissViewControllerAnimated(true, completion: nil);
+                        }
                     }
             }
             
