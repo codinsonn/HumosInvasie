@@ -43,7 +43,7 @@ class QRReplaceImageView: UIView {
         
         self.myId = avatar.id
         
-        var image:UIImage = ImageUploader.createImageFromUrlAndFilename(url, imgname: String(avatar.imageUrl));
+        var image:UIImage = ImageHelper.createImageFromUrlAndFilename(url, imgname: String(avatar.imageUrl));
         
         self.imageView = UIImageView(image: image);
         self.imageView.contentMode = UIViewContentMode.Center;

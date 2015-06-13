@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class ImageUploader {
+class ImageHelper {
     
     var imageView:UIImageView = UIImageView();
     
@@ -17,6 +17,8 @@ class ImageUploader {
         
         //generate random filename
         let filename = NSUUID().UUIDString;
+        
+        println("[ImageHelper] Uploading image \(filename).jpg");
         
         let docDir:AnyObject = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0];
         let imgPath = (docDir as! String) + "/\(filename).jpg";
@@ -65,12 +67,12 @@ class ImageUploader {
     
     class func createImageFromUrlAndFilename(imgdir:String, imgname:String) -> UIImage{
         
-        println("[ImageUploader] Creating Image from \(imgdir)\(imgname)");
+        println("[ImageHelper] Creating Image from \(imgdir)\(imgname)");
         
         let url = NSURL(string: imgdir + String(imgname));
         let data = NSData(contentsOfURL: url!);
         let image = UIImage(data: data!);
-    
+        
         return image!;
         
     }
@@ -121,7 +123,7 @@ class ImageUploader {
     init(){
         
     }
-
+    
 }
    
 

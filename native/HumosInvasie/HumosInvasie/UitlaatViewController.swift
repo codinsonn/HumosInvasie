@@ -48,9 +48,13 @@ class UitlaatViewController: UIViewController {
         
         self.view = UitlaatView(frame: containerRect);
         
+        self.loadUitlaatMessages();
+        
     }
     
     func loadUitlaatMessages(){
+        
+        println("[UitlaatVC] Loading uitlaat posts");
         
         Alamofire.request(.GET, "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/uitlaat/filter/hours/60/min_lat/50/max_lat/60/min_long/5/max_long/6").responseJSON { (_, _, data, _) in
             
@@ -80,7 +84,8 @@ class UitlaatViewController: UIViewController {
     
     func postUitlaat(notification:NSNotification){
         
-        let alert = UIAlertController(title: "Waarschijnlijk dronken", message: "Zeker dat u dit bericht wil posten? \n -\"\(self.uitlaatView.txtUitlaat.text)\"-", preferredStyle: UIAlertControllerStyle.Alert);
+        let alert = UIAlertController(title: "Misschien dronken", message: "Zeker dat u dit bericht wil posten? \n -\"\(self.uitlaatView.txtUitlaat.text)\"-", preferredStyle: UIAlertControllerStyle.Alert);
+        
         let yesAction = UIAlertAction(title: "euh...ja zeker?", style: UIAlertActionStyle.Default) { (action) -> Void in
             
             println("[UitlaatVC] Posting message: \(self.uitlaatView.txtUitlaat.text)");
@@ -93,7 +98,7 @@ class UitlaatViewController: UIViewController {
             
             if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
                 CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways
-            ){
+                ){
                     
                     currentLocation = locManager.location;
                     
@@ -103,7 +108,7 @@ class UitlaatViewController: UIViewController {
             }
             
             var postsEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/uitlaat/"
-            var parameters = ["character_id": 0, "title": "Pukkelpop 2015", "message": self.uitlaatView.txtUitlaat.text, "latitude": latitude, "longitude": longitude];
+            var parameters = ["character_id": self.charData.id, "title": "Pukkelpop 2015", "message": self.uitlaatView.txtUitlaat.text, "latitude": latitude, "longitude": longitude];
             Alamofire.request(.POST, postsEndpoint, parameters: parameters as! [String : AnyObject], encoding: .JSON)
                 .responseJSON { (request, response, data, error) in
                     if let anError = error
@@ -163,21 +168,21 @@ class UitlaatViewController: UIViewController {
         );
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

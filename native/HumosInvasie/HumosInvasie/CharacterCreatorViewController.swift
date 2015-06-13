@@ -19,7 +19,7 @@ class CharacterCreatorViewController: UIViewController {
     ];
     let bodyPartSliderHeight = UIScreen.mainScreen().bounds.height/3;
     var loadedUrls:Int = 0;
-    //change
+    
     // nog niet gebruikt tot nu toe
     var headPresetId:Int!;
     var upperPresetId:Int!;
@@ -28,7 +28,7 @@ class CharacterCreatorViewController: UIViewController {
     var charData:CharacterData!;
     
     // om de controllers bij te houden (memory manage)
-    var bodyPartViewControllerMemoryManager:Array<BodyPartViewController>
+    var bodyPartViewControllerMemoryManager:Array<BodyPartViewController>;
     
     var creatorView:CharacterCreatorView {
         get{
@@ -37,6 +37,8 @@ class CharacterCreatorViewController: UIViewController {
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        
+        self.bodyPartViewControllerMemoryManager = Array<BodyPartViewController>();
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         
@@ -157,7 +159,7 @@ class CharacterCreatorViewController: UIViewController {
             object: nil
         );
         
-        ImageUploader.uploadImage(saveImageView, uploaddir: "/uploads/characters/");
+        ImageHelper.uploadImage(saveImageView, uploaddir: "/uploads/characters/");
         
         //self.creatorView.addSubview(saveImageView);
         

@@ -124,8 +124,8 @@ class UitlaatView: UIView, UITextFieldDelegate {
             UIView.animateWithDuration(0.4, delay: delay, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                 
                 self.postButton.alpha = 1;
-            
-            }, completion: nil);
+                
+                }, completion: nil);
             
         }else{
             
@@ -133,7 +133,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
                 
                 self.postButton.alpha = 0;
                 
-            }, completion: nil);
+                }, completion: nil);
             
         }
         
@@ -149,7 +149,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
             self.uitlaatBgImgView.transform = CGAffineTransformTranslate(self.uitlaatBgImgView.transform, 0, -40);
             self.txtUitlaat.transform = CGAffineTransformTranslate(self.txtUitlaat.transform, 0, -40);
             
-        }, completion: nil);
+            }, completion: nil);
         
     }
     
@@ -164,7 +164,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
             self.uitlaatBgImgView.transform = CGAffineTransformTranslate(self.uitlaatBgImgView.transform, 0, 40);
             self.txtUitlaat.transform = CGAffineTransformTranslate(self.txtUitlaat.transform, 0, 40);
             
-        }, completion: nil);
+            }, completion: nil);
         
         showPostButtonIfValid(0.2);
         
@@ -175,6 +175,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
     func showInput(){
         
         self.currentCharacterFrame = CGRectMake(-8, 40, 90, 266);
+        self.txtUitlaat.frame = CGRect(x: 130, y: 120, width: 320, height: 100);
         
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
@@ -184,27 +185,27 @@ class UitlaatView: UIView, UITextFieldDelegate {
             
             self.uitlaatContainer.alpha = 0;
             
-        }, completion: nil);
+            }, completion: nil);
         
         UIView.animateWithDuration(0.7, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.characterHead.frame = self.currentCharacterFrame;
             
-        }, completion: nil);
+            }, completion: nil);
         
         UIView.animateWithDuration(0.5, delay: 0.3, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.uitlaatBgImgView.transform = CGAffineTransformScale(self.transform, 0.95, 0.95);
             self.uitlaatBgImgView.alpha = 1;
             
-        }, completion: nil);
+            }, completion: nil);
         
         UIView.animateWithDuration(0.4, delay: 0.8, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.txtUitlaat.alpha = 1;
             self.showPostButtonIfValid(0.8);
             
-        }, completion: nil);
+            }, completion: nil);
         
     }
     
@@ -221,32 +222,32 @@ class UitlaatView: UIView, UITextFieldDelegate {
             
             self.uitlaatContainer.alpha = 1;
             
-        }, completion: nil);
+            }, completion: nil);
         
         UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.txtUitlaat.alpha = 0;
             self.postButton.alpha = 0;
             
-        }, completion: nil);
+            }, completion: nil);
         
         UIView.animateWithDuration(0.4, delay: 0.1, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.uitlaatBgImgView.transform = CGAffineTransformScale(self.transform, 0.5, 0.5);
             self.uitlaatBgImgView.alpha = 0;
             
-        }, completion: nil);
+            }, completion: nil);
         
         UIView.animateWithDuration(0.7, delay: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.characterHead.frame = self.currentCharacterFrame;
             
-        }, completion: nil);
+            }, completion: nil);
         
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }

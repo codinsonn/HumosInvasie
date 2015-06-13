@@ -25,7 +25,7 @@
 		3A8E37DB1B28416A00FD5B52 /* KittenVisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37D91B28416A00FD5B52 /* KittenVisionViewController.swift */; };
 		3A8E37DD1B28418E00FD5B52 /* CharacterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37DC1B28418E00FD5B52 /* CharacterData.swift */; };
 		3A8E37E01B287DE300FD5B52 /* NetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37DF1B287DE300FD5B52 /* NetData.swift */; };
-		3A8E37E21B287EED00FD5B52 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37E11B287EED00FD5B52 /* ImageUploader.swift */; };
+		3A8E37E21B287EED00FD5B52 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37E11B287EED00FD5B52 /* ImageHelper.swift */; };
 		3A8E37E51B28B47D00FD5B52 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37E41B28B47D00FD5B52 /* ColorHelper.swift */; };
 		3A8E37E81B28C7C200FD5B52 /* BodyPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37E71B28C7C200FD5B52 /* BodyPart.swift */; };
 		3A8E37EB1B28C7CF00FD5B52 /* BodyPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E37E91B28C7CF00FD5B52 /* BodyPartView.swift */; };
@@ -130,7 +130,7 @@
 		3A8E37D91B28416A00FD5B52 /* KittenVisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KittenVisionViewController.swift; sourceTree = "<group>"; };
 		3A8E37DC1B28418E00FD5B52 /* CharacterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterData.swift; sourceTree = "<group>"; };
 		3A8E37DF1B287DE300FD5B52 /* NetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetData.swift; sourceTree = "<group>"; };
-		3A8E37E11B287EED00FD5B52 /* ImageUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		3A8E37E11B287EED00FD5B52 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		3A8E37E41B28B47D00FD5B52 /* ColorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		3A8E37E71B28C7C200FD5B52 /* BodyPart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyPart.swift; sourceTree = "<group>"; };
 		3A8E37E91B28C7CF00FD5B52 /* BodyPartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyPartView.swift; sourceTree = "<group>"; };
@@ -300,7 +300,7 @@
 		3A8E37E61B28B5FA00FD5B52 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				3A8E37E11B287EED00FD5B52 /* ImageUploader.swift */,
+				3A8E37E11B287EED00FD5B52 /* ImageHelper.swift */,
 				3A8E37E41B28B47D00FD5B52 /* ColorHelper.swift */,
 				3A8E37ED1B28C9FF00FD5B52 /* AlamoFactory.swift */,
 			);
@@ -457,7 +457,7 @@
 				3A8E37DD1B28418E00FD5B52 /* CharacterData.swift in Sources */,
 				3A8E37EE1B28C9FF00FD5B52 /* AlamoFactory.swift in Sources */,
 				3A1FFFF91B2814E600AC9419 /* SwiftyJSON.swift in Sources */,
-				3A8E37E21B287EED00FD5B52 /* ImageUploader.swift in Sources */,
+				3A8E37E21B287EED00FD5B52 /* ImageHelper.swift in Sources */,
 				3A8E37F21B28DDC900FD5B52 /* QRReplaceImageViewController.swift in Sources */,
 				3A8E37E01B287DE300FD5B52 /* NetData.swift in Sources */,
 				3A8E37D41B28413400FD5B52 /* UitlaatPostsFactory.swift in Sources */,

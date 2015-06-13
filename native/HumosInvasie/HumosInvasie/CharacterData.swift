@@ -36,7 +36,7 @@ class CharacterData: NSObject {
         self.lower_body_preset_id = lower_body_preset_id;
         self.imageName = imageName;
         
-        self.image = ImageUploader.createImageFromUrlAndFilename("http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/img/uploads/characters/", imgname: self.imageName);
+        self.image = ImageHelper.createImageFromUrlAndFilename("http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/img/uploads/characters/", imgname: self.imageName);
         
         super.init();
         
