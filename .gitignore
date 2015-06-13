@@ -1,4 +1,2 @@
-.DS_Store
-native/HumosInvasie/.DS_Store
+*/.DS_Store
 native/HumosInvasie/Cartfile.resolved
-native/HumosInvasie/HumosInvasieTests/
