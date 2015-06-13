@@ -261,8 +261,8 @@
 			children = (
 				3A8E37D21B28413400FD5B52 /* UitlaatViewController.swift */,
 				3A8E37D11B28413400FD5B52 /* UitlaatView.swift */,
-				3A8E37CF1B28413400FD5B52 /* UitlaatData.swift */,
 				3A8E37D01B28413400FD5B52 /* UitlaatPostsFactory.swift */,
+				3A8E37CF1B28413400FD5B52 /* UitlaatData.swift */,
 			);
 			name = Uitlaat;
 			sourceTree = "<group>";

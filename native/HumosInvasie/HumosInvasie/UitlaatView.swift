@@ -21,6 +21,8 @@ class UitlaatView: UIView, UITextFieldDelegate {
     var inputField : UITextField!;
     var postButton : UIButton!;
     
+    var currentCharacterFrame : CGRect!;
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame);
@@ -36,12 +38,13 @@ class UitlaatView: UIView, UITextFieldDelegate {
         self.uitlaatBgImgView.transform = CGAffineTransformScale(self.transform, 0.5, 0.5);
         self.uitlaatBgImgView.alpha = 0;
         
-        self.charHeadBgImgAnim = AnimatableImageView(frame: CGRectMake(-8, 230, 100, 100));
+        self.charHeadBgImgAnim = AnimatableImageView(frame: CGRectMake(-12, 230, 100, 100));
         self.charHeadBgImgAnim.animateWithImage(named: "CharHeadBg.gif");
         self.charHeadBgImgAnim.alpha = 1;
         self.addSubview(charHeadBgImgAnim);
         
-        self.characterHead = UIButton(frame: CGRect(x: -8, y: 230, width: 90, height: 90));
+        self.currentCharacterFrame = CGRect(x: -8, y: 230, width: 90, height: 90);
+        self.characterHead = UIButton(frame: self.currentCharacterFrame);
         self.characterHead.setTitle(" ", forState: .Normal);
         self.characterHead.setBackgroundImage(UIImage(named: "BatCat"), forState: .Normal);
         self.characterHead.addTarget(self, action: "characterHeadTapped", forControlEvents: .TouchUpInside);
@@ -70,8 +73,10 @@ class UitlaatView: UIView, UITextFieldDelegate {
     }
     
     func updateCharacterButton(image: UIImage){
-        self.characterHead.frame = CGRect(x: -8, y: 230, width: 90, height: 266);
+        
+        self.characterHead.frame = self.currentCharacterFrame;
         self.characterHead.setBackgroundImage(image, forState: .Normal);
+        
     }
     
     func postButtonTapped(){
@@ -127,9 +132,11 @@ class UitlaatView: UIView, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         
+        self.currentCharacterFrame = CGRectMake(-8, 10, 90, 266);
+        
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.characterHead.frame = CGRectMake(-8, 10, 90, 266);
+            self.characterHead.frame = self.currentCharacterFrame;
             self.uitlaatBgImgView.transform = CGAffineTransformTranslate(self.uitlaatBgImgView.transform, 0, -40);
             self.inputField.transform = CGAffineTransformTranslate(self.inputField.transform, 0, -40);
             
@@ -140,10 +147,11 @@ class UitlaatView: UIView, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         self.inputField.endEditing(true);
+        self.currentCharacterFrame = CGRectMake(-8, 40, 90, 266);
         
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.characterHead.frame = CGRectMake(-8, 40, 90, 266);
+            self.characterHead.frame = self.currentCharacterFrame;
             self.uitlaatBgImgView.transform = CGAffineTransformTranslate(self.uitlaatBgImgView.transform, 0, 40);
             self.inputField.transform = CGAffineTransformTranslate(self.inputField.transform, 0, 40);
             
@@ -157,6 +165,8 @@ class UitlaatView: UIView, UITextFieldDelegate {
     
     func showInput(){
         
+        self.currentCharacterFrame = CGRectMake(-8, 40, 90, 266);
+        
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.charHeadBgImgAnim.alpha = 0;
@@ -167,7 +177,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
         
         UIView.animateWithDuration(0.7, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.characterHead.frame = CGRectMake(-8, 40, 90, 266);
+            self.characterHead.frame = self.currentCharacterFrame;
             
         }, completion: nil);
         
@@ -190,6 +200,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
     func hideInput(){
         
         self.inputField.endEditing(true);
+        self.currentCharacterFrame = CGRectMake(-8, 230, 90, 266);
         
         UIView.animateWithDuration(0.4, delay: 0.8, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
@@ -215,7 +226,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
         
         UIView.animateWithDuration(0.7, delay: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            self.characterHead.frame = CGRectMake(-8, 230, 90, 266);
+            self.characterHead.frame = self.currentCharacterFrame;
             
         }, completion: nil);
         

@@ -76,40 +76,70 @@ class UitlaatViewController: UIViewController {
     
     func postUitlaat(notification:NSNotification){
         
-        println("[UitlaatVC] Posting message: \(self.uitlaatView.inputField.text)");
+        let alert = UIAlertController(title: "Waarschijnlijk dronken", message: "Zeker dat u dit bericht wil posten? \n -\"\(self.uitlaatView.inputField.text)\"-", preferredStyle: UIAlertControllerStyle.Alert);
         
-        var locManager = CLLocationManager()
-        locManager.requestWhenInUseAuthorization()
-        var latitude = 50.960406;
-        var longitude = 5.354287;
-        var currentLocation = CLLocation();
-        
-        if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways
-        ){
+        let yesAction = UIAlertAction(title: "euh...ja zeker?", style: UIAlertActionStyle.Default) { (action) -> Void in
             
-            currentLocation = locManager.location;
+            println("[UitlaatVC] Posting message: \(self.uitlaatView.inputField.text)");
             
-            latitude = currentLocation.coordinate.latitude;
-            longitude = currentLocation.coordinate.longitude;
+            var locManager = CLLocationManager()
+            locManager.requestWhenInUseAuthorization()
+            var latitude = 50.960406;
+            var longitude = 5.354287;
+            var currentLocation = CLLocation();
+            
+            if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
+                CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways
+                ){
+                    
+                    currentLocation = locManager.location;
+                    
+                    latitude = currentLocation.coordinate.latitude;
+                    longitude = currentLocation.coordinate.longitude;
+                    
+            }
+            
+            var postsEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/uitlaat/"
+            var parameters = ["character_id": 0, "title": "Pukkelpop 2015", "message": self.uitlaatView.inputField.text, "latitude": latitude, "longitude": longitude];
+            Alamofire.request(.POST, postsEndpoint, parameters: parameters as! [String : AnyObject], encoding: .JSON)
+                .responseJSON { (request, response, data, error) in
+                    if let anError = error
+                    {
+                        println("error calling POST on /posts");
+                        println(error);
+                    }
+                    else if let data: AnyObject = data
+                    {
+                        let post = JSON(data);
+                        println("The post is: " + post.description);
+                        
+                        let successAlert = UIAlertController(title: "Success!", message: "Je uitlaatbericht is met succes gepost. Dansen dansen!", preferredStyle: UIAlertControllerStyle.Alert);
+                        self.presentViewController(successAlert, animated: true, completion: nil);
+                        
+                    }
+            }
             
         }
         
-        var postsEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/uitlaat/"
-        var parameters = ["character_id": 0, "title": "Pukkelpop 2015", "message": self.uitlaatView.inputField.text, "latitude": latitude, "longitude": longitude];
-        Alamofire.request(.POST, postsEndpoint, parameters: parameters as! [String : AnyObject], encoding: .JSON)
-        .responseJSON { (request, response, data, error) in
-                if let anError = error
-                {
-                    println("error calling POST on /posts");
-                    println(error);
-                }
-                else if let data: AnyObject = data
-                {
-                    let post = JSON(data);
-                    println("The post is: " + post.description);
-                }
+        let cancelAction = UIAlertAction(title: "toch nog aanpassen", style: UIAlertActionStyle.Cancel) { (action) -> Void in
+            println("[UitlaatVC] Post was cancelled.");
         }
+        
+        let destroyAction = UIAlertAction(title: "vernietig het bewijs", style: UIAlertActionStyle.Destructive) { (action) -> Void in
+            
+            println("[UitlaatVC] Post was destroyed.");
+            
+            self.uitlaatView.inputField.text = "";
+            self.uitlaatView.hideInput();
+            
+        }
+        
+        alert.addAction(cancelAction);
+        alert.addAction(yesAction);
+        alert.addAction(destroyAction);
+        
+        self.presentViewController(alert, animated: true, completion: nil);
+        
         
     }
     
