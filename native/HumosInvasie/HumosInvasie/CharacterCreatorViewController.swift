@@ -27,6 +27,9 @@ class CharacterCreatorViewController: UIViewController {
     
     var charData:CharacterData!;
     
+    // om de controllers bij te houden (memory manage)
+    var bodyPartViewControllerMemoryManager:Array<BodyPartViewController>
+    
     var creatorView:CharacterCreatorView {
         get{
             return self.view as! CharacterCreatorView;
@@ -104,10 +107,14 @@ class CharacterCreatorViewController: UIViewController {
                     yPos = 212;
                 }
                 
-                self.creatorView.bodyPartsContainer.addSubview(BodyPartViewController(
-                    bodyParts: bodyParts,
-                    frame: CGRectMake(0, yPos, UIScreen.mainScreen().bounds.width, self.bodyPartSliderHeight)
-                ).view);
+                bodyPartViewController = BodyPartViewController(bodyParts: bodyParts,frame: CGRectMake(
+                    0,
+                    yPos,
+                    UIScreen.mainScreen().bounds.width,
+                    self.bodyPartSliderHeight), originalYpos:yPos
+                )
+                self.bodyPartViewControllerMemoryManager.append(bodyPartViewController)
+                self.creatorView.bodyPartsContainer.addSubview(bodyPartViewController.view)
                 
                 self.loadedUrls += 1;
                 if(self.loadedUrls >= 3){
