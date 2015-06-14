@@ -24,9 +24,8 @@ class DraggableUitlaatContainer: UIView, DraggableUitlaatViewDelegate {
     let checkButton = UIButton()
     let xButton = UIButton()
     
-    let exampleCardLabels = ["first", "second", "third", "fourth", "last"]
     var loadedCards = NSMutableArray()
-    var allCards =  NSMutableArray()
+    var allCards:Array<DraggableUitlaatView>!;
     var cardsLoadedIndex = 0
     var numLoadedCardsCap = 0
     
@@ -38,10 +37,18 @@ class DraggableUitlaatContainer: UIView, DraggableUitlaatViewDelegate {
     
     init(frame: CGRect, uitlaatMessages: Array<UitlaatData>) {
         
-        self.uitlaatMessages = uitlaatMessages;
-        
         super.init(frame: frame);
         super.layoutSubviews();
+        
+        self.allCards = Array<DraggableUitlaatView>();
+        
+        self.updateUitlaatMessages(uitlaatMessages);
+        
+    }
+    
+    func updateUitlaatMessages(uitlaatMessages: Array<UitlaatData>){
+        
+        self.uitlaatMessages = uitlaatMessages;
         
         setLoadedCardsCap();
         createCards();
@@ -68,9 +75,21 @@ class DraggableUitlaatContainer: UIView, DraggableUitlaatViewDelegate {
             let cardFrame = CGRectMake((self.frame.size.width - CARD_WIDTH)/2, (self.frame.size.height - CARD_HEIGHT)/2 + 20, CARD_WIDTH, CARD_HEIGHT);
             
             for uitlaatData in self.uitlaatMessages {
-                var newCard = DraggableUitlaatView(frame: cardFrame, uitlaatData: uitlaatData);
-                newCard.delegate = self;
-                allCards.addObject(newCard);
+                
+                var doesExist = false;
+                for(var i = 0; i < self.allCards.count; i++) {
+                    if(self.allCards[i].uitlaatData.id == uitlaatData.id){
+                        println("[DragUitlaatVC] Card exists");
+                        doesExist = true;
+                    }
+                }
+                
+                if(doesExist == false){
+                    var newCard = DraggableUitlaatView(frame: cardFrame, uitlaatData: uitlaatData);
+                    newCard.delegate = self;
+                    self.allCards.append(newCard);
+                }
+                
             }
             
         }
@@ -91,7 +110,10 @@ class DraggableUitlaatContainer: UIView, DraggableUitlaatViewDelegate {
     }
     
     func processCardSwipe() {
-        loadedCards.removeObjectAtIndex(0)
+        loadedCards.removeObjectAtIndex(0);
+        
+        NSUserDefaults.standardUserDefaults().setInteger(self.uitlaatMessages[0].id, forKey: "lastSwipedUitlaatId");
+        NSUserDefaults.standardUserDefaults().synchronize();
         
         if (moreCardsToLoad()) {
             loadNextCard()
@@ -109,23 +131,23 @@ class DraggableUitlaatContainer: UIView, DraggableUitlaatViewDelegate {
     func loadACardAt(index: Int) {
         loadedCards.addObject(allCards[index])
         if (loadedCards.count > 1) {
-            insertSubview(loadedCards[loadedCards.count-1] as! DraggableUitlaatView, belowSubview: loadedCards[loadedCards.count-2] as! DraggableUitlaatView)
-            // is there a way to define the array with UIView elements so I don't have to cast?
+            insertSubview(loadedCards[loadedCards.count-1] as! DraggableUitlaatView, belowSubview: loadedCards[loadedCards.count-2] as! DraggableUitlaatView);
         } else {
-            addSubview(loadedCards[0] as! DraggableUitlaatView)
+            addSubview(loadedCards[0] as! DraggableUitlaatView);
+            //addSubview(loadedCards[0] as! DraggableUitlaatView);
         }
         cardsLoadedIndex++;
     }
     
     func swipeRight() {
         let dragView = loadedCards[0] as! DraggableUitlaatView
-        print ("Clicked right")
+        print ("[DragUitlaatVC] Swiped right")
         dragView.rightAction()
     }
     
     func swipeLeft() {
         let dragView = loadedCards[0] as! DraggableUitlaatView
-        print ("clicked left")
+        print ("[DragUitlaatVC] Swiped left")
         dragView.leftAction()
     }
     

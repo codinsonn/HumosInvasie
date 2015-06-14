@@ -196,10 +196,10 @@ class DraggableUitlaatView:UIView{
         
         let uitlaatBgImg = UIImage(named: "UitlaatMsgBg");
         self.uitlaatBgImgView = UIImageView(image: uitlaatBgImg);
-        self.uitlaatBgImgView.frame = CGRectMake(70, 30, 240, 205);
+        self.uitlaatBgImgView.frame = CGRectMake(70, 35, 240, 205);
         self.addSubview(self.uitlaatBgImgView);
         
-        self.lblMessage.frame = CGRectMake(120, 50, 160, 200);
+        self.lblMessage.frame = CGRectMake(120, 57, 160, 140);
         self.lblMessage.textAlignment = .Left;
         self.lblMessage.text = self.uitlaatData.message;
         self.lblMessage.font = UIFont(name: "NewsGothicBT-Light", size: 14);
@@ -208,7 +208,7 @@ class DraggableUitlaatView:UIView{
         self.lblMessage.textColor = UIColor.whiteColor();
         self.addSubview(self.lblMessage);
         
-        self.lblNickname.frame = CGRectMake(120, 170, self.frame.size.width, 90);
+        self.lblNickname.frame = CGRectMake(120, 137, self.frame.size.width, 90);
         self.lblNickname.textAlignment = .Left;
         self.lblNickname.text = "\(self.uitlaatData.character.nickname)'s Uitlaat";
         self.lblNickname.font = UIFont(name: "Swiss721BT-Black", size: 16);

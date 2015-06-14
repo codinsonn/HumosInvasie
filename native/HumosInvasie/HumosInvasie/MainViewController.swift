@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
     var kittenVC : KittenVisionViewController!;
     
     var userCharData:CharacterData!;
+    var currentChallenge:String!;
     
     var presetsLoaded:Bool!;
     var preloaderLoopedOnce:Bool!;
@@ -179,7 +180,7 @@ class MainViewController: UIViewController {
                 self.badgeButton3.alpha = 1;
             }
             
-            }, completion: nil);
+        }, completion: nil);
     }
     
     func hideBadgess(){
@@ -189,19 +190,25 @@ class MainViewController: UIViewController {
             self.badgeButton2.alpha = 0;
             self.badgeButton3.alpha = 0;
             
-            }, completion: nil)
+        }, completion: nil)
     }
     
     func badge1Tapped(){
         
         println("[MainVC] Badge 1 Tapped : Character Creator");
         
-        flushViewControllers();
+        if(self.currentChallenge != "Character Creator"){
+            
+            flushViewControllers();
+            
+            self.mainView.changeBackgroundAnimation("CreatorBg");
+            //self.mainView.updateBackground("CharCreatorBg");
+            self.addChildViewController(creatorVC);
+            self.view.addSubview(creatorVC.view);
+            
+        }
         
-        self.mainView.changeBackgroundAnimation("CreatorBg");
-        //self.mainView.updateBackground("CharCreatorBg");
-        self.addChildViewController(creatorVC);
-        self.view.addSubview(creatorVC.view);
+        self.currentChallenge = "Character Creator";
         
     }
     
@@ -209,12 +216,20 @@ class MainViewController: UIViewController {
         
         println("[MainVC] Badge 2 Tapped : Uitlaat Pagina");
         
-        flushViewControllers();
+        if(self.currentChallenge != "Uitlaat"){
+            
+            flushViewControllers();
+            
+            self.uitlaatVC.loadUitlaatMessages();
+            
+            self.mainView.changeBackgroundAnimation("UitlaatBg");
+            //self.mainView.updateBackground("UitlaatBg");
+            self.addChildViewController(uitlaatVC);
+            self.view.addSubview(uitlaatVC.view);
+            
+        }
         
-        self.mainView.changeBackgroundAnimation("UitlaatBg");
-        //self.mainView.updateBackground("UitlaatBg");
-        self.addChildViewController(uitlaatVC);
-        self.view.addSubview(uitlaatVC.view);
+        self.currentChallenge = "Uitlaat";
         
     }
     
@@ -222,11 +237,17 @@ class MainViewController: UIViewController {
         
         println("[MainVC] Badge 3 Tapped : Kittenvision");
         
-        flushViewControllers();
+        if(self.currentChallenge != "KittenVision"){
+            
+            flushViewControllers();
+            
+            self.mainView.changeBackgroundAnimation("KittenVisionBg");
+            self.addChildViewController(kittenVC);
+            self.view.addSubview(kittenVC.view);
+            
+        }
         
-        self.mainView.changeBackgroundAnimation("KittenVisionBg");
-        self.addChildViewController(kittenVC);
-        self.view.addSubview(kittenVC.view);
+        self.currentChallenge = "KittenVision";
         
     }
     

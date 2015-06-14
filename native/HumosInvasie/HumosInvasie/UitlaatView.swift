@@ -24,12 +24,17 @@ class UitlaatView: UIView, UITextFieldDelegate {
     var currentCharacterFrame : CGRect!;
     
     var uitlaatContainer : DraggableUitlaatContainer!;
+    var addedContainerToSubview = false;
     
     override init(frame: CGRect) {
         
         super.init(frame: frame);
         
         println("[UitlaatView] Initialising View");
+        
+        var uitlaatMsgs:Array<UitlaatData>! = [];
+        self.uitlaatContainer = DraggableUitlaatContainer(frame: CGRectMake(100, 0, 368, 300), uitlaatMessages: uitlaatMsgs);
+        self.addSubview(self.uitlaatContainer);
         
         self.inputBgImage = UIImage(named: "textInputBg");
         self.uitlaatBgImgView = UIImageView(image: inputBgImage);
@@ -75,8 +80,18 @@ class UitlaatView: UIView, UITextFieldDelegate {
     
     func updateUitlaatContainer(uitlaatPostsContainer:DraggableUitlaatContainer){
         
-        self.uitlaatContainer = uitlaatPostsContainer;
-        self.addSubview(self.uitlaatContainer);
+        if(self.addedContainerToSubview == false){
+            
+            self.uitlaatContainer = uitlaatPostsContainer;
+            self.addSubview(self.uitlaatContainer);
+            
+            self.addedContainerToSubview = true;
+            
+        }else{
+            
+            self.uitlaatContainer.updateUitlaatMessages(uitlaatPostsContainer.uitlaatMessages);
+            
+        }
         
         hideInput();
         

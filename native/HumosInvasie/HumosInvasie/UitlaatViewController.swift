@@ -78,12 +78,17 @@ class UitlaatViewController: UIViewController {
                 
         }
         
+        var lastSwipedID = 0;
+        if (NSUserDefaults.standardUserDefaults().objectForKey("lastSwipedUitlaatId") != nil) {
+            lastSwipedID = NSUserDefaults.standardUserDefaults().integerForKey("lastSwipedUitlaatId");
+        }
+        
         let maxLat = latitude + LOCATION_RADIUS;
         let minLat = latitude - LOCATION_RADIUS;
         let maxLong = longitude + LOCATION_RADIUS;
         let minLong = longitude - LOCATION_RADIUS;
         
-        let apiEndPoint = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/uitlaat/filter/hours/\(HOURS_AGO)/min_lat/\(minLat)/max_lat/\(maxLat)/min_long/\(minLong)/max_long/\(maxLong)";
+        let apiEndPoint = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/uitlaat/filter/hours/\(HOURS_AGO)/min_lat/\(minLat)/max_lat/\(maxLat)/min_long/\(minLong)/max_long/\(maxLong)/last_swiped_id/\(lastSwipedID)/";
         
         println("[UitlaatVC] Getting posts from \(apiEndPoint)");
         
