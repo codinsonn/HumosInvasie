@@ -5,6 +5,9 @@
 //  Created by Lukasz Gandecki on 3/23/15.
 //  Copyright (c) 2015 Lukasz Gandecki. All rights reserved.
 //
+//  Edited to DraggableUitlaatContainer.swift
+//  Edit by Thorr Stevens on 13/06/15 for HumosInvasie
+//
 
 import Foundation
 import UIKit
@@ -12,9 +15,9 @@ import UIKit
 
 class DraggableUitlaatContainer: UIView, DraggableUitlaatViewDelegate {
     
-    let MAX_BUFFER_SIZE = 2;
-    let CARD_HEIGHT = CGFloat(260.0);
-    let CARD_WIDTH = CGFloat(320.0);
+    let MAX_BUFFER_SIZE = 1
+    let CARD_HEIGHT = CGFloat(260.0)
+    let CARD_WIDTH = CGFloat(320.0)
     
     let menuButton = UIButton()
     let messageButton = UIButton()
@@ -27,39 +30,52 @@ class DraggableUitlaatContainer: UIView, DraggableUitlaatViewDelegate {
     var cardsLoadedIndex = 0
     var numLoadedCardsCap = 0
     
+    var uitlaatMessages:Array<UitlaatData>!;
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        super.layoutSubviews()
-        setLoadedCardsCap()
-        createCards()
-        displayCards()
+    
+    init(frame: CGRect, uitlaatMessages: Array<UitlaatData>) {
+        
+        self.uitlaatMessages = uitlaatMessages;
+        
+        super.init(frame: frame);
+        super.layoutSubviews();
+        
+        setLoadedCardsCap();
+        createCards();
+        displayCards();
+        
     }
     
     func setLoadedCardsCap() {
+        
         numLoadedCardsCap = 0;
-        if (exampleCardLabels.count > MAX_BUFFER_SIZE) {
+        
+        if (self.uitlaatMessages.count > MAX_BUFFER_SIZE) {
             numLoadedCardsCap = MAX_BUFFER_SIZE
         } else {
-            numLoadedCardsCap = exampleCardLabels.count
+            numLoadedCardsCap = self.uitlaatMessages.count
         }
         
     }
     
     func createCards() {
+        
         if (numLoadedCardsCap > 0) {
-            let cardFrame = CGRectMake((self.frame.size.width - CARD_WIDTH)/2, (self.frame.size.height - CARD_HEIGHT)/2 + 20, CARD_WIDTH, CARD_HEIGHT)
             
-            for cardLabel in exampleCardLabels {
-                var newCard = DraggableUitlaatView(frame: cardFrame, information: cardLabel)
+            let cardFrame = CGRectMake((self.frame.size.width - CARD_WIDTH)/2, (self.frame.size.height - CARD_HEIGHT)/2 + 20, CARD_WIDTH, CARD_HEIGHT);
+            
+            for uitlaatData in self.uitlaatMessages {
+                var newCard = DraggableUitlaatView(frame: cardFrame, uitlaatData: uitlaatData);
                 newCard.delegate = self;
-                allCards.addObject(newCard)
+                allCards.addObject(newCard);
             }
+            
         }
     }
-
+    
     func displayCards() {
         for(var i = 0; i < numLoadedCardsCap; i++) {
             loadACardAt(i)
@@ -73,7 +89,6 @@ class DraggableUitlaatContainer: UIView, DraggableUitlaatViewDelegate {
     func cardSwipedRight(card: DraggableUitlaatView) {
         processCardSwipe()
     }
-
     
     func processCardSwipe() {
         loadedCards.removeObjectAtIndex(0)
@@ -114,6 +129,6 @@ class DraggableUitlaatContainer: UIView, DraggableUitlaatViewDelegate {
         dragView.leftAction()
     }
     
-
+    
     
 }

@@ -179,7 +179,7 @@ class MainViewController: UIViewController {
                 self.badgeButton3.alpha = 1;
             }
             
-        }, completion: nil);
+            }, completion: nil);
     }
     
     func hideBadgess(){
@@ -189,7 +189,7 @@ class MainViewController: UIViewController {
             self.badgeButton2.alpha = 0;
             self.badgeButton3.alpha = 0;
             
-        }, completion: nil)
+            }, completion: nil)
     }
     
     func badge1Tapped(){
@@ -198,7 +198,8 @@ class MainViewController: UIViewController {
         
         flushViewControllers();
         
-        self.mainView.updateBackground("CharCreatorBg");
+        self.mainView.changeBackgroundAnimation("CreatorBg");
+        //self.mainView.updateBackground("CharCreatorBg");
         self.addChildViewController(creatorVC);
         self.view.addSubview(creatorVC.view);
         
@@ -210,7 +211,8 @@ class MainViewController: UIViewController {
         
         flushViewControllers();
         
-        self.mainView.updateBackground("UitlaatBg");
+        self.mainView.changeBackgroundAnimation("UitlaatBg");
+        //self.mainView.updateBackground("UitlaatBg");
         self.addChildViewController(uitlaatVC);
         self.view.addSubview(uitlaatVC.view);
         
@@ -222,6 +224,7 @@ class MainViewController: UIViewController {
         
         flushViewControllers();
         
+        self.mainView.changeBackgroundAnimation("KittenVisionBg");
         self.addChildViewController(kittenVC);
         self.view.addSubview(kittenVC.view);
         

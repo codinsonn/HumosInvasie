@@ -38,6 +38,9 @@
 		3A8ECB191B2C41FF000D1BE4 /* DraggableUitlaatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8ECB161B2C41FF000D1BE4 /* DraggableUitlaatView.swift */; };
 		3A8ECB1A1B2C41FF000D1BE4 /* DraggableUitlaatContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8ECB171B2C41FF000D1BE4 /* DraggableUitlaatContainer.swift */; };
 		3A8ECB1B1B2C41FF000D1BE4 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8ECB181B2C41FF000D1BE4 /* OverlayView.swift */; };
+		3A8ECB311B2D28C9000D1BE4 /* UitlaatBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A8ECB301B2D28C9000D1BE4 /* UitlaatBg.gif */; };
+		3A8ECB361B2D28D2000D1BE4 /* CreatorBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A8ECB351B2D28D2000D1BE4 /* CreatorBg.gif */; };
+		3A8ECB381B2D28DD000D1BE4 /* KittenVisionBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A8ECB371B2D28DD000D1BE4 /* KittenVisionBg.gif */; };
 		3A96E56A1B29A92900B1C22E /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A96E5681B29A92900B1C22E /* Gifu.framework */; };
 		3A96E56B1B29A92900B1C22E /* Gifu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A96E5681B29A92900B1C22E /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A96E56C1B29A92900B1C22E /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A96E5691B29A92900B1C22E /* Runes.framework */; };
@@ -143,6 +146,9 @@
 		3A8ECB161B2C41FF000D1BE4 /* DraggableUitlaatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableUitlaatView.swift; sourceTree = "<group>"; };
 		3A8ECB171B2C41FF000D1BE4 /* DraggableUitlaatContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableUitlaatContainer.swift; sourceTree = "<group>"; };
 		3A8ECB181B2C41FF000D1BE4 /* OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		3A8ECB301B2D28C9000D1BE4 /* UitlaatBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = UitlaatBg.gif; sourceTree = "<group>"; };
+		3A8ECB351B2D28D2000D1BE4 /* CreatorBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CreatorBg.gif; sourceTree = "<group>"; };
+		3A8ECB371B2D28DD000D1BE4 /* KittenVisionBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = KittenVisionBg.gif; sourceTree = "<group>"; };
 		3A96E5681B29A92900B1C22E /* Gifu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gifu.framework; path = Carthage/Build/iOS/Gifu.framework; sourceTree = "<group>"; };
 		3A96E5691B29A92900B1C22E /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 		3A96E5711B29A9FD00B1C22E /* CharHeadBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CharHeadBg.gif; sourceTree = "<group>"; };
@@ -215,6 +221,9 @@
 			children = (
 				3A1FFFB61B28143500AC9419 /* Info.plist */,
 				3A96E5731B29BB0000B1C22E /* LogoPreloader.gif */,
+				3A8ECB351B2D28D2000D1BE4 /* CreatorBg.gif */,
+				3A8ECB301B2D28C9000D1BE4 /* UitlaatBg.gif */,
+				3A8ECB371B2D28DD000D1BE4 /* KittenVisionBg.gif */,
 				3A96E5711B29A9FD00B1C22E /* CharHeadBg.gif */,
 			);
 			name = "Supporting Files";
@@ -426,8 +435,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A8ECB381B2D28DD000D1BE4 /* KittenVisionBg.gif in Resources */,
 				3A96E5741B29BB0000B1C22E /* LogoPreloader.gif in Resources */,
 				3A96E5721B29A9FD00B1C22E /* CharHeadBg.gif in Resources */,
+				3A8ECB361B2D28D2000D1BE4 /* CreatorBg.gif in Resources */,
+				3A8ECB311B2D28C9000D1BE4 /* UitlaatBg.gif in Resources */,
 				3A1FFFBF1B28143500AC9419 /* LaunchScreen.xib in Resources */,
 				3A1FFFBC1B28143500AC9419 /* Images.xcassets in Resources */,
 			);

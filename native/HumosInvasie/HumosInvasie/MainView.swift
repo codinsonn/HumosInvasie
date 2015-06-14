@@ -15,26 +15,39 @@ class MainView: UIView {
     var bgImage:UIImage!;
     var preloadAnim:AnimatableImageView!;
     var preloadWebView:UIWebView!;
+    var bgAnimWebView:UIWebView!;
     
     override init(frame: CGRect){
         
         super.init(frame: frame);
         
-        self.bgImage = UIImage(named: "IntroScreenBg");
+        /*self.bgImage = UIImage(named: "IntroScreenBg");
         self.bgImageView = UIImageView(image: self.bgImage);
         self.bgImageView.frame = frame;
-        self.addSubview(self.bgImageView);
+        self.addSubview(self.bgImageView);*/
+        
+        self.bgAnimWebView = UIWebView(frame: frame);
+        self.changeBackgroundAnimation("CreatorBg");
+        self.bgAnimWebView.alpha = 0.75;
+        self.addSubview(self.bgAnimWebView);
         
         var filePath = NSBundle.mainBundle().pathForResource("LogoPreloader", ofType: "gif");
-        var gif = NSData(contentsOfFile: filePath!);
+        let preloadGif = NSData(contentsOfFile: filePath!);
         self.preloadWebView = UIWebView(frame: frame);
-        self.preloadWebView.loadData(gif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil);
+        self.preloadWebView.loadData(preloadGif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil);
         self.addSubview(preloadWebView);
         
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func changeBackgroundAnimation(imgName:String){
+        
+        let gif = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource(imgName, ofType: "gif")!);
+        self.bgAnimWebView.loadData(gif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil);
+        
     }
     
     func dismissPreloader(){
@@ -43,21 +56,21 @@ class MainView: UIView {
             
             self.preloadWebView.alpha = 0;
             
-        }, completion: nil);
+            }, completion: nil);
         
         UIView.animateWithDuration(0.1, delay: 0.8, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             self.preloadWebView.removeFromSuperview();
             
-        }, completion: nil);
+            }, completion: nil);
         
     }
     
     func updateBackground(imageName:String) {
         
-        self.bgImage = UIImage(named: imageName);
-        self.bgImageView.image = self.bgImage;
+        //self.bgImage = UIImage(named: imageName);
+        //self.bgImageView.image = self.bgImage;
         
     }
-
+    
 }

@@ -10,10 +10,15 @@ import UIKit
 import Alamofire
 import CoreLocation
 
+let LOCATION_RADIUS = 0.4 //%%% how wide to search in relation to own location when dealing with latitude and longitude
+let HOURS_AGO = 10 //%%% get messages from how many hours ago?
+
 class UitlaatViewController: UIViewController {
     
     var charData:CharacterData!;
     var uitlaatContainer:DraggableUitlaatContainer!;
+    
+    var uitlaatMessages:Array<UitlaatData>!;
     
     var uitlaatView:UitlaatView {
         get{
@@ -56,9 +61,43 @@ class UitlaatViewController: UIViewController {
         
         println("[UitlaatVC] Loading uitlaat posts");
         
-        Alamofire.request(.GET, "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/uitlaat/filter/hours/60/min_lat/50/max_lat/60/min_long/5/max_long/6").responseJSON { (_, _, data, _) in
+        var locManager = CLLocationManager();
+        locManager.requestWhenInUseAuthorization();
+        var latitude = 50.960406;
+        var longitude = 5.354287;
+        var currentLocation = CLLocation();
+        
+        if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways
+            ){
+                
+                currentLocation = locManager.location;
+                
+                latitude = currentLocation.coordinate.latitude;
+                longitude = currentLocation.coordinate.longitude;
+                
+        }
+        
+        let maxLat = latitude + LOCATION_RADIUS;
+        let minLat = latitude - LOCATION_RADIUS;
+        let maxLong = longitude + LOCATION_RADIUS;
+        let minLong = longitude - LOCATION_RADIUS;
+        
+        let apiEndPoint = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/uitlaat/filter/hours/\(HOURS_AGO)/min_lat/\(minLat)/max_lat/\(maxLat)/min_long/\(minLong)/max_long/\(maxLong)";
+        
+        println("[UitlaatVC] Getting posts from \(apiEndPoint)");
+        
+        Alamofire.request(.GET, apiEndPoint).responseJSON { (_, _, data, _) in
             
+            var jsonData = JSON(data!);
             
+            var err:NSErrorPointer! = NSErrorPointer();
+            let uitlaatData = NSJSONSerialization.dataWithJSONObject(jsonData.object, options: nil, error: err);
+            
+            self.uitlaatMessages = UitlaatPostsFactory.createFromJSONData(uitlaatData!);
+            
+            self.uitlaatContainer = DraggableUitlaatContainer(frame: CGRectMake(100, 0, 368, 300), uitlaatMessages: self.uitlaatMessages);
+            self.uitlaatView.updateUitlaatContainer(self.uitlaatContainer);
             
         }
         
@@ -76,9 +115,6 @@ class UitlaatViewController: UIViewController {
             name: "POST_TAPPED",
             object: self.uitlaatView.txtUitlaat
         );
-        
-        self.uitlaatContainer = DraggableUitlaatContainer(frame: CGRectMake(100, 0, 368, 300));
-        self.uitlaatView.updateUitlaatContainer(uitlaatContainer);
         
     }
     
