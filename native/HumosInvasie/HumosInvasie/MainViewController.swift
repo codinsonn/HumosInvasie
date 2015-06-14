@@ -10,9 +10,7 @@ import UIKit
 import Alamofire
 
 class MainViewController: UIViewController, AchievementDelegate {
-    
-    weak var achievementDelegate:AchievementDelegate?
-    
+   
     var badgeButton1 : UIButton!;
     var badgeButton2 : UIButton!;
     var badgeButton3 : UIButton!;
@@ -38,7 +36,14 @@ class MainViewController: UIViewController, AchievementDelegate {
         self.presetsLoaded = false;
         self.preloaderLoopedOnce = false;
         self.view = MainView(frame: UIScreen.mainScreen().bounds);
-        
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -115,7 +120,7 @@ class MainViewController: UIViewController, AchievementDelegate {
     func checkUserData(){
         
         if NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter"){
-            
+            self.unlockBadge("character")
             var char_id = NSUserDefaults.standardUserDefaults().integerForKey("userCharacterId");
             
             println("[MainVC] Loading Character (ID = \(char_id))");
@@ -139,6 +144,14 @@ class MainViewController: UIViewController, AchievementDelegate {
             
         }
         
+    }
+    
+    func unlockBadge(achievement: String){
+        if(achievement == "character"){
+            
+        let character_unlockedButtonBg:UIImage = UIImage(named: "character_unlocked")!
+        badgeButton1.setBackgroundImage(character_unlockedButtonBg, forState: UIControlState.Normal)
+        }
     }
     
     func presetsLoadedHandler(notification: NSNotification){
@@ -206,7 +219,6 @@ class MainViewController: UIViewController, AchievementDelegate {
             //self.mainView.updateBackground("CharCreatorBg");
             self.addChildViewController(creatorVC);
             self.view.addSubview(creatorVC.view);
-            
         }
         
         self.currentChallenge = "Character Creator";
