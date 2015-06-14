@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class MainViewController: UIViewController, AchievementDelegate {
+class MainViewController: UIViewController {
    
     var badgeButton1 : UIButton!;
     var badgeButton2 : UIButton!;

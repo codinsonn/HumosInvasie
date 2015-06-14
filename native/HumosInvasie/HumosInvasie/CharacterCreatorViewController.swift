@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class CharacterCreatorViewController: UIViewController {
-    weak var achievementDelegate:AchievementDelegate?
+    //weak var achievementDelegate:AchievementDelegate?
     
     let imagesArray = ["1","2","3","4"];
     let bodyPartsApiArray = [
@@ -44,7 +44,7 @@ class CharacterCreatorViewController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         
         println("[CreatorVC] Initialising ViewController");
-        self.achievementDelegate?.didAchieveTarget("testString")
+        //self.achievementDelegate?.didAchieveTarget("testString")
         self.loadJSON();
         
     }
@@ -212,7 +212,7 @@ class CharacterCreatorViewController: UIViewController {
         }else{
             
             println("[CharVC] Saving created character to device and database");
-            self.achievementDelegate?.didAchieveTarget("character_created")
+            //self.achievementDelegate?.didAchieveTarget("character_created")
             var apiEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/characters/";
             var parameters = [
                 "char_img_id": char_img_id,
@@ -238,7 +238,7 @@ class CharacterCreatorViewController: UIViewController {
                         
                         NSUserDefaults.standardUserDefaults().setInteger(char_id, forKey: "userCharacterId");
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasCreatedCharacter");
-                        self.achievementDelegate?.didAchieveTarget("character_created")
+                       // self.achievementDelegate?.didAchieveTarget("character_created")
                         NSUserDefaults.standardUserDefaults().synchronize();
                         
                         NSNotificationCenter.defaultCenter().postNotificationName(
