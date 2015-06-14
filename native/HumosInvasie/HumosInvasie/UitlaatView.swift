@@ -62,6 +62,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
         self.txtUitlaat.frame = CGRect(x: 130, y: 120, width: 320, height: 100);
         self.txtUitlaat.tintColor = UIColor.whiteColor();
         self.txtUitlaat.textColor = UIColor.whiteColor();
+        self.txtUitlaat.sizeToFit();
         self.txtUitlaat.contentVerticalAlignment = UIControlContentVerticalAlignment.Top;
         self.txtUitlaat.delegate = self;
         self.txtUitlaat.alpha = 0;

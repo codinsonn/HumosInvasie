@@ -16,12 +16,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //enumerateFonts();
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds);
         self.mainVC = MainViewController(nibName: nil, bundle: nil)
         self.window.rootViewController = self.mainVC;
         self.window.makeKeyAndVisible();
         
         return true;
+        
+    }
+    
+    func enumerateFonts(){
+        
+        for fontFamily in UIFont.familyNames() {
+            
+            println("Font family name = \(fontFamily as! String)");
+            
+            for fontName in UIFont.fontNamesForFamilyName(fontFamily as! String) {
+                
+                println("- Font name = \(fontName)");
+                
+            }
+            
+            println("\n");
+            
+        }
         
     }
 
