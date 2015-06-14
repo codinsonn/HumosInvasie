@@ -9,7 +9,9 @@
 import UIKit
 import Alamofire
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, AchievementDelegate {
+    
+    weak var achievementDelegate:AchievementDelegate?
     
     var badgeButton1 : UIButton!;
     var badgeButton2 : UIButton!;
@@ -35,7 +37,6 @@ class MainViewController: UIViewController {
         
         self.presetsLoaded = false;
         self.preloaderLoopedOnce = false;
-        
         self.view = MainView(frame: UIScreen.mainScreen().bounds);
         
     }
@@ -43,6 +44,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         
         self.view.backgroundColor = UIColor.whiteColor();
         let characterButtonBg:UIImage = UIImage(named: "character_locked")!
@@ -271,5 +273,7 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func didAchieveTarget(achievement: String) {
+        println(achievement)
+    }
 }
