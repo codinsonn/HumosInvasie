@@ -45,24 +45,23 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.whiteColor();
-        
-        badgeButton1 = UIButton(frame: CGRectMake(self.view.frame.width - 65, self.view.frame.height/4 * 1 - 25, 50, 50));
-        badgeButton1.setTitle("Ch1", forState: .Normal);
-        badgeButton1.backgroundColor = UIColor.redColor();
+        let characterButtonBg:UIImage = UIImage(named: "character_locked")!
+        badgeButton1 = UIButton(frame: CGRectMake(self.view.frame.width - 106, 6 ,100,100))
+        badgeButton1.setBackgroundImage(characterButtonBg, forState: UIControlState.Normal)
         badgeButton1.alpha = 0;
         badgeButton1.addTarget(self, action: "badge1Tapped", forControlEvents: .TouchUpInside);
         self.view.addSubview(badgeButton1);
         
-        badgeButton2 = UIButton(frame: CGRectMake(self.view.frame.width - 65, self.view.frame.height/4 * 2 - 25, 50, 50));
-        badgeButton2.setTitle("Ch2", forState: .Normal);
-        badgeButton2.backgroundColor = UIColor.greenColor();
+        let uitlaatButtonBg:UIImage = UIImage(named: "uitlaat_locked")!
+        badgeButton2 = UIButton(frame: CGRectMake(self.view.frame.width - 106, 112 ,100,100))
+        badgeButton2.setBackgroundImage(uitlaatButtonBg, forState: UIControlState.Normal)
         badgeButton2.addTarget(self, action: "badge2Tapped", forControlEvents: .TouchUpInside);
         badgeButton2.alpha = 0;
         self.view.addSubview(badgeButton2);
         
-        badgeButton3 = UIButton(frame: CGRectMake(self.view.frame.width - 65, self.view.frame.height/4 * 3 - 25, 50, 50));
-        badgeButton3.setTitle("Ch3", forState: .Normal);
-        badgeButton3.backgroundColor = UIColor.blueColor();
+        let kittenVisionButtonBg:UIImage = UIImage(named: "kitten_locked")!
+        badgeButton3 = UIButton(frame: CGRectMake(self.view.frame.width - 106, 218 ,100,100))
+        badgeButton3.setBackgroundImage(kittenVisionButtonBg, forState: UIControlState.Normal)
         badgeButton3.addTarget(self, action: "badge3Tapped", forControlEvents: .TouchUpInside);
         badgeButton3.alpha = 0;
         self.view.addSubview(badgeButton3);
