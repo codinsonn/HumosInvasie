@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds);
         self.mainVC = MainViewController(nibName: nil, bundle: nil)
         self.window.rootViewController = self.mainVC;
-        self.window.makeKeyAndVisible();
         
+        self.window.makeKeyAndVisible();
         return true;
         
     }

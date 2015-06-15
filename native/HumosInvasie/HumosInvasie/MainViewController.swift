@@ -109,6 +109,13 @@ class MainViewController: UIViewController {
             
         }
         
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "achievementCompletedHandler:",
+            name: "ACHIEVEMENT_COMPLETED",
+            object: nil
+        );
+        
     }
     
     func characterUpdatedHandler(notification: NSNotification){
@@ -278,6 +285,11 @@ class MainViewController: UIViewController {
             object: nil
         );
         
+    }
+    
+    func achievementCompletedHandler(notification: NSNotification){
+        println("achievement_notified")
+        println(notification.object as! String)
     }
     
     override func didReceiveMemoryWarning() {

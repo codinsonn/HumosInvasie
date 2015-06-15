@@ -28,7 +28,6 @@ class BodyPartView: UIScrollView {
         var xPosition = 0
         
         for bodyPart in bodyParts{
-            println(bodyPart, frame)
             let url = NSURL(string: "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/img/presets/" + bodyPart.fileName)
             let data = NSData(contentsOfURL: url!)
             let image = UIImage(data: data!)

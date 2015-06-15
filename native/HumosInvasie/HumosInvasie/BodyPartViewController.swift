@@ -64,7 +64,6 @@ class BodyPartViewController: UIViewController {
             
             // Calculate new X position based on the amount the gesture
             // has moved plus the size of the view we want to move.
-            println(view.frame.origin.y )
             let newYLoc:CGFloat = (view.frame.origin.y + point.y) - (view.frame.size.height / 2);
             if(self.checkMaxMinMoveDistance(newYLoc)){
                 view.frame = CGRectMake(view.frame.origin.x,
@@ -77,7 +76,6 @@ class BodyPartViewController: UIViewController {
     
     func checkMaxMinMoveDistance(newLocY:CGFloat) -> Bool{
         let maxMoveDistance:CGFloat = 40
-        println(newLocY)
         if(newLocY > 0 &&
             (newLocY + self.view.frame.height) < UIScreen.mainScreen().bounds.height &&
             newLocY < self.originalYpos + maxMoveDistance &&

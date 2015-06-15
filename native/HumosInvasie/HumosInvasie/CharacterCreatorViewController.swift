@@ -93,7 +93,6 @@ class CharacterCreatorViewController: UIViewController {
             
             Alamofire.request(.GET, url).responseJSON{(_,_,data,_)in
                 
-                println(url)
                 var json = JSON(data!)
                 var bodyParts = Array<BodyPart>()
                 
@@ -174,6 +173,9 @@ class CharacterCreatorViewController: UIViewController {
         //NSUserDefaults.standardUserDefaults().setBool(false, forKey: "hasCreatedCharacter");
         
         if( NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter") ){
+            NSNotificationCenter.defaultCenter().postNotificationName(
+                "ACHIEVEMENT_COMPLETED",
+                object: "character")
 
             char_id = NSUserDefaults.standardUserDefaults().integerForKey("userCharacterId");
             var apiEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/characters/update/";
@@ -212,7 +214,11 @@ class CharacterCreatorViewController: UIViewController {
         }else{
             
             println("[CharVC] Saving created character to device and database");
-            //self.achievementDelegate?.didAchieveTarget("character_created")
+            NSNotificationCenter.defaultCenter().postNotificationName(
+                "ACHIEVEMENT_COMPLETED",
+                object: "character"
+            );
+
             var apiEndpoint: String = "http://student.howest.be/thorr.stevens/20142015/MA4/BADGET/api/characters/";
             var parameters = [
                 "char_img_id": char_img_id,
