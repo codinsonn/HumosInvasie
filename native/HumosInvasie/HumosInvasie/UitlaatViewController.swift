@@ -172,6 +172,11 @@ class UitlaatViewController: UIViewController {
                         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay));
                         dispatch_after(time, dispatch_get_main_queue()) {
                             successAlert.dismissViewControllerAnimated(true, completion: nil);
+                            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasPostedMessage");
+                            NSNotificationCenter.defaultCenter().postNotificationName(
+                                "ACHIEVEMENT_COMPLETED",
+                                object: "uitlaat"
+                            );
                         }
                     }
             }

@@ -127,7 +127,7 @@ class MainViewController: UIViewController {
     func checkUserData(){
         
         if NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter"){
-            self.unlockBadge("character")
+            self.showBadges()
             var char_id = NSUserDefaults.standardUserDefaults().integerForKey("userCharacterId");
             
             println("[MainVC] Loading Character (ID = \(char_id))");
@@ -151,14 +151,6 @@ class MainViewController: UIViewController {
             
         }
         
-    }
-    
-    func unlockBadge(achievement: String){
-        if(achievement == "character"){
-            
-        let character_unlockedButtonBg:UIImage = UIImage(named: "character_unlocked")!
-        badgeButton1.setBackgroundImage(character_unlockedButtonBg, forState: UIControlState.Normal)
-        }
     }
     
     func presetsLoadedHandler(notification: NSNotification){
@@ -191,17 +183,36 @@ class MainViewController: UIViewController {
     }
     
     func showBadges(){
-        UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: {
+        if(self.presetsLoaded == true){
+            UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: {
             
-            self.badgeButton1.alpha = 1;
+                self.badgeButton1.alpha = 1;
+                
+                // Only show 2nd and 3rd buttons/badges when a character has been created and saved to the device and database
+                if NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter"){
+                    self.changeButtonBg("character")
+                    self.badgeButton2.alpha = 1;
+                    self.badgeButton3.alpha = 1;
+                }
+                
+                if NSUserDefaults.standardUserDefaults().boolForKey("hasPostedMessage"){
+                    self.changeButtonBg("uitlaat")
+                }
             
-            // Only show 2nd and 3rd buttons/badges when a character has been created and saved to the device and database
-            if NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter"){
-                self.badgeButton2.alpha = 1;
-                self.badgeButton3.alpha = 1;
-            }
-            
-        }, completion: nil);
+            }, completion: nil);
+        }
+    }
+    
+    func changeButtonBg(badge:String){
+        if(badge == "character"){
+            let character_unlockedButtonBg:UIImage = UIImage(named: "character_unlocked")!
+            badgeButton1.setBackgroundImage(character_unlockedButtonBg, forState: UIControlState.Normal)
+        }
+        if(badge == "uitlaat"){
+            let character_unlockedButtonBg:UIImage = UIImage(named: "uitlaat_unlocked")!
+            badgeButton2.setBackgroundImage(character_unlockedButtonBg, forState: UIControlState.Normal)
+        }
+
     }
     
     func hideBadgess(){
@@ -288,16 +299,15 @@ class MainViewController: UIViewController {
     }
     
     func achievementCompletedHandler(notification: NSNotification){
-        println("achievement_notified")
-        println(notification.object as! String)
+        println("achievement completed in Mainvc")
+        
+        var notification = notification.object as! String
+        println(notification)
+        self.showBadges()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func didAchieveTarget(achievement: String) {
-        println(achievement)
     }
 }
