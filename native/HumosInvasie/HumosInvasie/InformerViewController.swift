@@ -10,67 +10,55 @@
 import UIKit
 
 class InformerViewController: UIViewController {
-    var yoloJezusWebView:UIWebView
-    var putinWebView:UIWebView
-    var userFeedbackButton:UIButton
+    var activeInformer:String = ""
+    
     var theView:InformerView {
         get{
             return self.view as! InformerView;
         }
     }
-
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        self.yoloJezusWebView = UIWebView(frame: UIScreen.mainScreen().bounds);
-        self.putinWebView = UIWebView(frame: UIScreen.mainScreen().bounds);
-        self.userFeedbackButton = UIButton(frame: UIScreen.mainScreen().bounds)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func userFeedbackGiven(){
-        println("feedback given")
-    }
-    
     override func loadView() {
-        self.view = InformerView()
+        self.view = InformerView(frame: UIScreen.mainScreen().bounds)
+
     }
     
     override func viewDidLoad() {
+        println(self.theView);
         
-        var jezusPath = NSBundle.mainBundle().pathForResource("Jesus_568x320_once", ofType: "gif");
-        let yoloJezusGif = NSData(contentsOfFile: jezusPath!);
-        self.yoloJezusWebView.scalesPageToFit = true
-        self.yoloJezusWebView.opaque = false
-        self.yoloJezusWebView.backgroundColor = UIColor.clearColor()
-        self.yoloJezusWebView.loadData(yoloJezusGif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil);
+        self.theView.userFeedbackButton.addTarget(self, action: "userFeedbackGiven:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        var putinPath = NSBundle.mainBundle().pathForResource("Putin_568x320_once", ofType: "gif");
-        let putinGif = NSData(contentsOfFile: putinPath!);
-        self.putinWebView.scalesPageToFit = true
-        self.putinWebView.opaque = false
-        self.putinWebView.backgroundColor = UIColor.clearColor()
-        self.putinWebView.loadData(putinGif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil);
+        let tap = UITapGestureRecognizer(target: self, action: "tapped:");
+        tap.numberOfTapsRequired = 2;
         
-        self.userFeedbackButton.backgroundColor = UIColor.blackColor()
-        //self.userFeedbackButton.alpha = 0
-        self.userFeedbackButton.addTarget(self, action: "userFeedbackGiven", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(self.userFeedbackButton)
+        self.view.addGestureRecognizer(tap);
+
     }
+    
+    func tapped(sender:UITapGestureRecognizer){
+        println("tabbed");
+    }
+
     
     func addInformer(informer:String){
-        if (informer == "jezus"){
-            self.view.addSubview(self.yoloJezusWebView)
-        }
-        if (informer == "putin"){
-            self.view.addSubview(self.putinWebView)
-        }
+        self.activeInformer = informer
+        self.theView.addInformer(self.activeInformer)
+        self.view.bringSubviewToFront(self.theView.userFeedbackButton);
+
     }
     
-    
+    func userFeedbackGiven(sender:UIButton!){
+        println("feedback given")
+        self.theView.removeInformerFromStage()
+    }
     
 
 }

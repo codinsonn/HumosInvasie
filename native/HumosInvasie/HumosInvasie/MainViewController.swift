@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        self.informerVC = InformerViewController()
+        self.informerVC = InformerViewController(nibName: nil, bundle: nil)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
     }
@@ -52,7 +52,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.view.addSubview(self.informerVC.view)
+
         
         self.view.backgroundColor = UIColor.whiteColor();
         let characterButtonBg:UIImage = UIImage(named: "character_locked")!
@@ -99,7 +99,6 @@ class MainViewController: UIViewController {
             self.kittenVC = KittenVisionViewController(nibName: nil, bundle: nil);
             
             self.checkUserData();
-            
         }
         
         // Let preloader loop at least once
@@ -118,6 +117,14 @@ class MainViewController: UIViewController {
             name: "ACHIEVEMENT_COMPLETED",
             object: nil
         )
+        
+        self.addInformers()
+        
+    }
+    
+    func addInformers(){
+        self.addChildViewController(self.informerVC)
+        self.view.addSubview(self.informerVC.view)
     }
     
     func characterUpdatedHandler(notification: NSNotification){
@@ -300,6 +307,13 @@ class MainViewController: UIViewController {
             name: "CHARACTER_UPDATED",
             object: nil
         );
+        
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: "ACHIEVEMENT_COMPLETED",
+            object: nil
+        )
+
         
     }
     
