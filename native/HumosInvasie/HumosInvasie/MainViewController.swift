@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 
 class MainViewController: UIViewController {
+    var informerVC:InformerViewController
    
     var badgeButton1 : UIButton!;
     var badgeButton2 : UIButton!;
@@ -39,7 +40,9 @@ class MainViewController: UIViewController {
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        self.informerVC = InformerViewController()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -49,7 +52,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        self.view.addSubview(self.informerVC.view)
         
         self.view.backgroundColor = UIColor.whiteColor();
         let characterButtonBg:UIImage = UIImage(named: "character_locked")!
@@ -114,8 +117,7 @@ class MainViewController: UIViewController {
             selector: "achievementCompletedHandler:",
             name: "ACHIEVEMENT_COMPLETED",
             object: nil
-        );
-        
+        )
     }
     
     func characterUpdatedHandler(notification: NSNotification){
@@ -184,6 +186,7 @@ class MainViewController: UIViewController {
     
     func showBadges(){
         if(self.presetsLoaded == true){
+            self.informerVC.addInformer("jezus")
             UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: {
             
                 self.badgeButton1.alpha = 1;
@@ -235,8 +238,10 @@ class MainViewController: UIViewController {
             
             self.mainView.changeBackgroundAnimation("CreatorBg");
             //self.mainView.updateBackground("CharCreatorBg");
+            self.mainView.changeInformationGiver("Jesus_568x320")
             self.addChildViewController(creatorVC);
             self.view.addSubview(creatorVC.view);
+            
         }
         
         self.currentChallenge = "Character Creator";

@@ -15,7 +15,9 @@ class MainView: UIView {
     var bgImage:UIImage!;
     var preloadAnim:AnimatableImageView!;
     var preloadWebView:UIWebView!;
-    var bgAnimWebView:UIWebView!;
+    var bgAnimWebView:UIWebView!
+    var charHeadBgImgAnim:AnimatableImageView!
+    var informationGiverWebView:UIWebView!
     
     override init(frame: CGRect){
         
@@ -44,10 +46,12 @@ class MainView: UIView {
     }
     
     func changeBackgroundAnimation(imgName:String){
-        
         let gif = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource(imgName, ofType: "gif")!);
         self.bgAnimWebView.loadData(gif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil);
-        
+    }
+    
+    func changeInformationGiver(imgName:String){
+        //addSubview(self.informationGiverWebView)
     }
     
     func dismissPreloader(){

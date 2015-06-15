@@ -23,6 +23,7 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
     
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
 
+    
     var kittenView:KittenVisionView {
         get{
             return self.view as! KittenVisionView;
@@ -48,7 +49,6 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
         let containerRect = CGRectMake(0, 0, 488, 320);
         
         self.view = KittenVisionView(frame: containerRect);
-        
     }
     
     override func viewDidLoad() {
@@ -66,6 +66,8 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
             println("\(error?.localizedDescription)");
             return
         }
+        
+        
         
         captureSession = AVCaptureSession();
         captureSession?.sessionPreset = AVCaptureSessionPresetHigh;
@@ -85,7 +87,6 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
         view.layer.addSublayer(videoPreviewLayer);
         
         captureSession?.startRunning();
-        
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection videoConnection: AVCaptureConnection!) {
