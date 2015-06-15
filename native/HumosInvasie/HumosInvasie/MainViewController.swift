@@ -90,6 +90,13 @@ class MainViewController: UIViewController {
             object: nil
         );
         
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "instructionsAgreedUpon:",
+            name: "INSTRUCTIONS_AGREED_UPON",
+            object: nil
+        );
+        
         var delay = 1 * Double(NSEC_PER_SEC);
         var time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay));
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -180,6 +187,9 @@ class MainViewController: UIViewController {
     
     func flushViewControllers(){
         
+        self.informerVC.removeFromParentViewController();
+        self.informerVC.view.removeFromSuperview();
+        
         self.creatorVC.removeFromParentViewController();
         self.creatorVC.view.removeFromSuperview();
         
@@ -245,7 +255,6 @@ class MainViewController: UIViewController {
             
             self.mainView.changeBackgroundAnimation("CreatorBg");
             //self.mainView.updateBackground("CharCreatorBg");
-            self.mainView.changeInformationGiver("Jesus_568x320")
             self.addChildViewController(creatorVC);
             self.view.addSubview(creatorVC.view);
             
@@ -259,6 +268,7 @@ class MainViewController: UIViewController {
         
         println("[MainVC] Badge 2 Tapped : Uitlaat Pagina");
         
+        
         if(self.currentChallenge != "Uitlaat"){
             
             flushViewControllers();
@@ -266,10 +276,16 @@ class MainViewController: UIViewController {
             self.uitlaatVC.loadUitlaatMessages();
             
             self.mainView.changeBackgroundAnimation("UitlaatBg");
-            //self.mainView.updateBackground("UitlaatBg");
-            self.addChildViewController(uitlaatVC);
-            self.view.addSubview(uitlaatVC.view);
             
+            if NSUserDefaults.standardUserDefaults().boolForKey("hasPostedMessage"){
+                self.addChildViewController(uitlaatVC);
+                self.view.addSubview(uitlaatVC.view);
+            }
+            else{
+                self.addChildViewController(self.informerVC)
+                self.informerVC.addInformer("putin")
+                self.view.addSubview(self.informerVC.view)
+            }
         }
         
         self.currentChallenge = "Uitlaat";
@@ -323,6 +339,19 @@ class MainViewController: UIViewController {
         var notification = notification.object as! String
         println(notification)
         self.showBadges()
+    }
+    
+    func instructionsAgreedUpon(notification:NSNotification){
+        var notification = notification.object as! String
+        if(notification == "jezus"){
+        badge1Tapped()
+        }
+        if(notification == "putin"){
+            badge2Tapped()
+            self.addChildViewController(uitlaatVC);
+            self.view.addSubview(uitlaatVC.view);
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

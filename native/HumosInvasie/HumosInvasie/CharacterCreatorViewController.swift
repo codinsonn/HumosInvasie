@@ -75,10 +75,10 @@ class CharacterCreatorViewController: UIViewController {
         println("[CreatorVC] View did load");
         
         super.viewDidLoad();
-
-        let saveButton:UIButton = UIButton(frame: CGRectMake(0, 200, 100, 100));
+        let saveIcon:UIImage = UIImage(named: "bewaarIcon")!
+        let saveButton:UIButton = UIButton(frame: CGRectMake(-40, 200, 346/2, 244/2));
+        saveButton.setBackgroundImage(saveIcon, forState: UIControlState.Normal)
         saveButton.addTarget(self, action: "saveAvatar", forControlEvents: UIControlEvents.TouchUpInside);
-        saveButton.setTitle("save", forState: UIControlState.Normal);
         self.creatorView.addSubview(saveButton);
         
     }
