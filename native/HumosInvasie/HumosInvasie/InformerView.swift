@@ -17,6 +17,7 @@ class InformerView: UIView {
     var yoloJezusWebView:UIWebView
     var putinWebView:UIWebView
     var kimWebView:UIWebView
+    var finaleWebView:UIWebView
     
     var jezusIntructieView:UIImageView!
     var jezusInstructie:UIImage!
@@ -26,6 +27,9 @@ class InformerView: UIView {
     
     var kimInstructieView:UIImageView!
     var kimInstructie:UIImage!
+    
+    var finaleInstructieView:UIImageView!
+    var finaleInstructie:UIImage!
     
     var activeInstruction:UIImageView!
     /*
@@ -46,6 +50,9 @@ class InformerView: UIView {
         
         self.kimWebView = UIWebView(frame: UIScreen.mainScreen().bounds);
         self.kimWebView.userInteractionEnabled = false;
+        
+        self.finaleWebView = UIWebView(frame: UIScreen.mainScreen().bounds);
+        self.finaleWebView.userInteractionEnabled = false;
         
         self.activeInformer = UIWebView(frame: UIScreen.mainScreen().bounds);
         
@@ -78,6 +85,14 @@ class InformerView: UIView {
         self.kimWebView.opaque = false
         self.kimWebView.backgroundColor = UIColor.clearColor()
         self.kimWebView.loadData(kimGif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil);
+        
+        var finalPath = NSBundle.mainBundle().pathForResource("finale", ofType: "gif");
+        let finaleGif = NSData(contentsOfFile: finalPath!);
+        self.finaleWebView.scalesPageToFit = true
+        self.finaleWebView.opaque = false
+        self.finaleWebView.backgroundColor = UIColor.clearColor()
+        self.finaleWebView.loadData(finaleGif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil);
+
     }
     
     func makePamphlets(){
@@ -112,6 +127,17 @@ class InformerView: UIView {
             kimInstructie.size.height/2)
         
         kimInstructieView.frame = self.startInstructionPos
+        
+        self.finaleInstructie = UIImage(named: "finale_tekst")!
+        self.finaleInstructieView = UIImageView(image: finaleInstructie)
+        self.startInstructionPos = CGRectMake(
+            (UIScreen.mainScreen().bounds.width - finaleInstructie.size.width/2)/2,
+            -640,
+            finaleInstructie.size.width/2,
+            finaleInstructie.size.height/2)
+        
+        finaleInstructieView.frame = self.startInstructionPos
+
 
     }
 
@@ -150,6 +176,15 @@ class InformerView: UIView {
             self.addSubview(self.kimInstructieView)
             self.activeInstruction = self.kimInstructieView
         }
+        
+        if(informer == "finale"){
+            self.addSubview(self.finaleWebView)
+            self.activeInformer = self.finaleWebView
+            
+            self.addSubview(self.finaleInstructieView)
+            self.activeInstruction = self.finaleInstructieView
+        }
+
         
         self.makeInstructionVisible(4,theFrame: finishRect)
 

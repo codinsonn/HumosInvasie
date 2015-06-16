@@ -146,12 +146,20 @@ class MainViewController: UIViewController {
     }
     
     func killKittenVision(notification:NSNotification){
-        println(notification.object)
-        
-        
-        
+        var notification = notification.object as! Int
+        if(notification > 0){
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasScannedQR");
+            println("qr scanned")
+            showBadges()
+        }
         self.kittenVC.removeFromParentViewController();
         self.kittenVC.view.removeFromSuperview();
+    }
+    
+    func checkQRscanned(){
+        if(NSUserDefaults.standardUserDefaults().boolForKey("hasScannedQR")){
+            changeButtonBg("qr")
+        }
     }
     
     func checkUserData(){
@@ -232,8 +240,12 @@ class MainViewController: UIViewController {
                 if NSUserDefaults.standardUserDefaults().boolForKey("hasPostedMessage"){
                     self.changeButtonBg("uitlaat")
                 }
+                if NSUserDefaults.standardUserDefaults().boolForKey("hasScannedQR"){
+                    self.changeButtonBg("qr")
+                }
             
             }, completion: nil);
+            self.checkCompletion()
         }
     }
     
@@ -243,8 +255,13 @@ class MainViewController: UIViewController {
             badgeButton1.setBackgroundImage(character_unlockedButtonBg, forState: UIControlState.Normal)
         }
         if(badge == "uitlaat"){
-            let character_unlockedButtonBg:UIImage = UIImage(named: "uitlaat_unlocked")!
-            badgeButton2.setBackgroundImage(character_unlockedButtonBg, forState: UIControlState.Normal)
+            let uitlaat_unlockedButtonBg:UIImage = UIImage(named: "uitlaat_unlocked")!
+            badgeButton2.setBackgroundImage(uitlaat_unlockedButtonBg, forState: UIControlState.Normal)
+        }
+        
+        if(badge == "qr"){
+            let qr_unlockedButtonBg:UIImage = UIImage(named: "kitten_unlocked")!
+            badgeButton3.setBackgroundImage(qr_unlockedButtonBg, forState: UIControlState.Normal)
         }
 
     }
@@ -367,6 +384,9 @@ class MainViewController: UIViewController {
         
         var notification = notification.object as! String
         println(notification)
+        if(notification == "character"){
+             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasCreatedCharacter");
+        }
         self.showBadges()
     }
     
@@ -387,6 +407,22 @@ class MainViewController: UIViewController {
             self.addChildViewController(kittenVC);
             self.view.addSubview(kittenVC.view);
             self.kittenVC.startKittenVision();
+        }
+        
+    }
+    
+    func checkCompletion(){
+        if (NSUserDefaults.standardUserDefaults().boolForKey("hasPostedMessage") &&
+            NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter") &&
+            NSUserDefaults.standardUserDefaults().boolForKey("hasScannedQR")
+            ){
+            println("all completed")
+            if !(NSUserDefaults.standardUserDefaults().boolForKey("hasCompletedChallanges")){
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasCompletedChallanges");
+                self.addInformers()
+                self.informerVC.addInformer("finale")
+
+            }
         }
         
     }

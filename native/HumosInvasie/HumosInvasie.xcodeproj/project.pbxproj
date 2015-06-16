@@ -58,6 +58,7 @@
 		C015C11A1B2F2F780065A19A /* InformerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C015C1191B2F2F780065A19A /* InformerView.swift */; };
 		C015C11C1B2F326E0065A19A /* Putin_568x320_once.gif in Resources */ = {isa = PBXBuildFile; fileRef = C015C11B1B2F326E0065A19A /* Putin_568x320_once.gif */; };
 		C03ECA261B2FC3B0009451F1 /* Kim_568x320_once.gif in Resources */ = {isa = PBXBuildFile; fileRef = C03ECA251B2FC3B0009451F1 /* Kim_568x320_once.gif */; };
+		C03ECA2F1B30528B009451F1 /* finale.gif in Resources */ = {isa = PBXBuildFile; fileRef = C03ECA2E1B30528B009451F1 /* finale.gif */; };
 		C072AFD61B2F982100F8F1AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C072AFD51B2F982100F8F1AC /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -196,6 +197,7 @@
 		C015C1191B2F2F780065A19A /* InformerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformerView.swift; sourceTree = "<group>"; };
 		C015C11B1B2F326E0065A19A /* Putin_568x320_once.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Putin_568x320_once.gif; sourceTree = "<group>"; };
 		C03ECA251B2FC3B0009451F1 /* Kim_568x320_once.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Kim_568x320_once.gif; sourceTree = "<group>"; };
+		C03ECA2E1B30528B009451F1 /* finale.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = finale.gif; sourceTree = "<group>"; };
 		C072AFD51B2F982100F8F1AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -268,6 +270,7 @@
 		3A1FFFB51B28143500AC9419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C03ECA2E1B30528B009451F1 /* finale.gif */,
 				C03ECA251B2FC3B0009451F1 /* Kim_568x320_once.gif */,
 				C015C11B1B2F326E0065A19A /* Putin_568x320_once.gif */,
 				C015C1151B2F17120065A19A /* Jesus_568x320_once.gif */,
@@ -521,6 +524,7 @@
 				C015C1161B2F17120065A19A /* Jesus_568x320_once.gif in Resources */,
 				C015C1141B2F0FA30065A19A /* Jesus_568x320.gif in Resources */,
 				3A8ECB381B2D28DD000D1BE4 /* KittenVisionBg.gif in Resources */,
+				C03ECA2F1B30528B009451F1 /* finale.gif in Resources */,
 				3A96E5741B29BB0000B1C22E /* LogoPreloader.gif in Resources */,
 				3A96E5721B29A9FD00B1C22E /* CharHeadBg.gif in Resources */,
 				C015C11C1B2F326E0065A19A /* Putin_568x320_once.gif in Resources */,

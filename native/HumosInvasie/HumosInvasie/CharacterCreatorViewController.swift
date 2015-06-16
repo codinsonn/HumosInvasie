@@ -243,7 +243,7 @@ class CharacterCreatorViewController: UIViewController {
                         char_id = post["id"].intValue;
                         
                         NSUserDefaults.standardUserDefaults().setInteger(char_id, forKey: "userCharacterId");
-                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasCreatedCharacter");
+                       
                        // self.achievementDelegate?.didAchieveTarget("character_created")
                         NSUserDefaults.standardUserDefaults().synchronize();
                         

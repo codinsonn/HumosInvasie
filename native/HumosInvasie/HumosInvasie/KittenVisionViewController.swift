@@ -31,8 +31,9 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        self.backButton = UIButton(frame: CGRectMake(0, 0, 40, 40))
-        self.backButton.setTitle("back", forState: UIControlState.Normal)
+        self.backButton = UIButton(frame: CGRectMake(0, 0, 108, 100))
+        let backButtonImage:UIImage = UIImage(named: "Back-Button")!
+        self.backButton.setBackgroundImage(backButtonImage, forState: UIControlState.Normal)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         
         println("[KittenVC] Initialising ViewController");
@@ -85,26 +86,30 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
         videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill;
         videoPreviewLayer?.frame = view.layer.bounds;
         
-    }
-    
-    func startKittenVision(){
+        var QRSerializer:Array<AnyObject> = [];
         view.layer.addSublayer(videoPreviewLayer);
         captureSession?.startRunning();
         self.view.addSubview(self.backButton)
+    }
+    
+    func startKittenVision(){
+        
     }
     
     func goBackFromKittenVision(){
         println("going back")
         NSNotificationCenter.defaultCenter().postNotificationName(
             "GOING_BACK_FROM_KV",
-            object: self.QRSerializer)
+            object: self.QRSerializer.count)
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection videoConnection: AVCaptureConnection!) {
         
         for view in self.view.subviews{
             var hideThisView = view as! UIView;
-            hideThisView.hidden = true;
+            if(!hideThisView.isKindOfClass(UIButton)){
+                hideThisView.hidden = true;
+            }
         }
         
         if metadataObjects == nil || metadataObjects.count == 0 {
