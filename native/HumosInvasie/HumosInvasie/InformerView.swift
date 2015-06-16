@@ -15,6 +15,11 @@ class InformerView: UIView {
     var userFeedbackButton:UIButton
     var yoloJezusWebView:UIWebView
     var putinWebView:UIWebView
+    
+    var jezusIntructieView:UIImageView!
+    var jezusInstructie:UIImage!
+    
+    var activeInstruction:UIImageView!
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -33,6 +38,7 @@ class InformerView: UIView {
         
         super.init(frame: frame)
         self.makeInformers()
+        self.makePamphlets()
         self.userFeedbackButton.backgroundColor = UIColor.clearColor()
         self.addSubview(self.userFeedbackButton)
     }
@@ -52,6 +58,17 @@ class InformerView: UIView {
         self.putinWebView.backgroundColor = UIColor.clearColor()
         self.putinWebView.loadData(putinGif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil);
     }
+    
+    func makePamphlets(){
+        self.jezusInstructie = UIImage(named: "jezus_instructie")!
+        self.jezusIntructieView = UIImageView(image: jezusInstructie)
+        jezusIntructieView.frame = CGRectMake(
+            (UIScreen.mainScreen().bounds.width - jezusInstructie.size.width/2)/2,
+            -640,
+            jezusInstructie.size.width/2,
+            jezusInstructie.size.height/2)
+        
+    }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -62,6 +79,17 @@ class InformerView: UIView {
         if(informer == "jezus"){
             self.addSubview(self.yoloJezusWebView)
             self.activeInformer = self.yoloJezusWebView
+            
+            self.addSubview(self.jezusIntructieView)
+            self.activeInstruction = self.jezusIntructieView
+           
+            let jezusRect:CGRect = CGRectMake(
+                (UIScreen.mainScreen().bounds.width - self.jezusInstructie.size.width/2)/2,
+                0,
+                self.jezusInstructie.size.width/2,
+                self.jezusInstructie.size.height/2)
+            self.makeInstructionVisible(4,theFrame: jezusRect)
+            
         }
         if(informer == "putin"){
             self.addSubview(self.putinWebView)
@@ -76,6 +104,14 @@ class InformerView: UIView {
             }, completion: {
                 (value: Bool) in
                 self.notifyComplete()
+        });
+    }
+    
+    func makeInstructionVisible(theDelay:Double, theFrame:CGRect){
+        UIView.animateWithDuration(0.6, delay: theDelay, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.activeInstruction.frame = theFrame}, completion: {
+                (value: Bool) in
+                
         });
     }
     
