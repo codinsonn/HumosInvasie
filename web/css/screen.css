@@ -1,25 +1,17 @@
-/* 
-- HUMO's Invasie 
-- App Onepager Promo for Humo's Invasie App 
-- v1.0.0 
-- MIT licensed 
-- Copyright (C) 2015 Thorr Stevens & Wannes Monchy 
-*/
-
 @font-face {
   font-family: "news_gothic-webfont";
-  src: url('../fonts/news_gothic_light-webfont.eot?1434342846');
-  src: url('../fonts/news_gothic_light-webfont.eot?&1434342846#iefix') format('embedded-opentype'), url('../fonts/news_gothic_light-webfont.woff?1434342846') format('woff'), url('../fonts/news_gothic_light-webfont.ttf?1434342846') format('truetype'), url('../fonts/news_gothic_light-webfont.svg?1434342846') format('svg');
+  src: url('../fonts/news_gothic_light-webfont.eot?1434463184');
+  src: url('../fonts/news_gothic_light-webfont.eot?&1434463184#iefix') format('embedded-opentype'), url('../fonts/news_gothic_light-webfont.woff?1434463184') format('woff'), url('../fonts/news_gothic_light-webfont.ttf?1434463184') format('truetype'), url('../fonts/news_gothic_light-webfont.svg?1434463184') format('svg');
 }
 @font-face {
   font-family: "swiss_721-webfont";
-  src: url('../fonts/swiss_721_black-webfont.eot?1434342926');
-  src: url('../fonts/swiss_721_black-webfont.eot?&1434342926#iefix') format('embedded-opentype'), url('../fonts/swiss_721_black-webfont.woff?1434342926') format('woff'), url('../fonts/swiss_721_black-webfont.ttf?1434342926') format('truetype'), url('../fonts/swiss_721_black-webfont.svg?1434342926') format('svg');
+  src: url('../fonts/swiss_721_black-webfont.eot?1434463184');
+  src: url('../fonts/swiss_721_black-webfont.eot?&1434463184#iefix') format('embedded-opentype'), url('../fonts/swiss_721_black-webfont.woff?1434463184') format('woff'), url('../fonts/swiss_721_black-webfont.ttf?1434463184') format('truetype'), url('../fonts/swiss_721_black-webfont.svg?1434463184') format('svg');
 }
 @font-face {
   font-family: "menlo-regular-webfont";
-  src: url('../fonts/menlo-regular-webfont.eot?1434388042');
-  src: url('../fonts/menlo-regular-webfont.eot?&1434388042#iefix') format('embedded-opentype'), url('../fonts/menlo-regular-webfont.woff?1434388042') format('woff'), url('../fonts/menlo-regular-webfont.ttf?1434388042') format('truetype'), url('../fonts/menlo-regular-webfont.svg?1434388042') format('svg');
+  src: url('../fonts/menlo-regular-webfont.eot?1434463184');
+  src: url('../fonts/menlo-regular-webfont.eot?&1434463184#iefix') format('embedded-opentype'), url('../fonts/menlo-regular-webfont.woff?1434463184') format('woff'), url('../fonts/menlo-regular-webfont.ttf?1434463184') format('truetype'), url('../fonts/menlo-regular-webfont.svg?1434463184') format('svg');
 }
 body {
   margin: 0;
@@ -72,7 +64,7 @@ body {
   top: 0px;
   padding-top: 20px;
   margin-top: 0px;
-  background-image: url('../img/HeaderBg.png?1434431159');
+  background-image: url('../img/HeaderBg.png?1434463184');
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -93,7 +85,7 @@ body {
 
 /* ---- Character Backgrounds -------------------------------- */
 .putin {
-  background-image: url('../img/Putin_de_Dromer_Cropped.png?1434434084');
+  background-image: url('../img/Putin_de_Dromer_Cropped.png?1434463184');
   background-size: 150px 180px;
   background-position: bottom right;
   background-repeat: no-repeat;
@@ -102,14 +94,14 @@ body {
 
 @media all and (min-width: 800px) {
   .jesus {
-    background-image: url('../img/rocket-jezus.png?1434448747');
+    background-image: url('../img/rocket-jezus.png?1434463184');
     background-size: 380px 300px;
     background-position: bottom right;
     background-repeat: no-repeat;
   }
 
   .kim {
-    background-image: url('../img/Kim_Jung_Oen_De_Beloner.png?1433443701');
+    background-image: url('../img/Kim_Jung_Oen_De_Beloner.png?1434463184');
     background-size: 150px 150px;
     background-position: top right;
     background-repeat: no-repeat;
@@ -257,4 +249,8 @@ body {
   color: #FFFFFF;
   text-shadow: 1px 0px rgba(46, 46, 46, 0.2);
   margin: 20px;
+}
+
+.video {
+  padding-top: 15px;
 }

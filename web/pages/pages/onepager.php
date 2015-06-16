@@ -19,6 +19,8 @@
 <!-- Jumbotron -->
 <div class="jumbotron">
     <div class="container text-left">
+    	<div class="row">
+    		<div class="col-lg-6">
         <h1>Humo's Invasie</h1>
         <p>Pukkelpop, wat een droog commercieel gedoe is dat.</p>
         <p>Gelukkig zijn de mascottes van de HUMO er om het wat interessant te maken.</p>
@@ -50,6 +52,14 @@
 	        </div>
         </div>
     </div>
+    <div class="col-lg-6 hidden-xs">
+    	<div class=" video">
+    		<iframe width="560" height="315" src="http://youtube.com/embed/m4cgLL8JaVI?rel=0" frameborder="0" allowfullscreen></iframe>
+    	</div>
+    </div>
+</div>
+   </div>
+</row>
 </div><!-- / Jumbotron -->
 
 <!-- Challenges -->
