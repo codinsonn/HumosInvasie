@@ -63,6 +63,7 @@ class UitlaatView: UIView, UITextFieldDelegate {
         self.postButton.alpha = 0;
         self.addSubview(postButton);
         
+               
         self.txtUitlaat = UITextField();
         self.txtUitlaat.frame = CGRect(x: 130, y: 120, width: 320, height: 100);
         self.txtUitlaat.tintColor = UIColor.whiteColor();

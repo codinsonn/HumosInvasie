@@ -24,10 +24,16 @@ class CharacterCreatorView: UIView, UITextFieldDelegate {
         self.bodyPartsContainer = UIView(frame: frame);
         self.addSubview(bodyPartsContainer);
         
+        let nameTag:UIImage = UIImage(named: "nameTag")!
+        let nameTagView:UIImageView = UIImageView(image: nameTag)
+        nameTagView.frame = CGRectMake(0, 0, nameTag.size.width/3, nameTag.size.height/3)
+        self.addSubview(nameTagView)
+
+        
         self.txtNickname = UITextField();
-        self.txtNickname.frame = CGRect(x: 10, y: 10, width: 160, height: 25);
+        self.txtNickname.frame = CGRect(x: 15, y: 30, width: 100, height: 25);
         self.txtNickname.tintColor = UIColor.blackColor();
-        self.txtNickname.textColor = UIColor.blackColor();
+        self.txtNickname.textColor = UIColor.redColor();
         self.txtNickname.backgroundColor = UIColor.whiteColor();
         self.txtNickname.contentVerticalAlignment = UIControlContentVerticalAlignment.Center;
         self.txtNickname.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center;
