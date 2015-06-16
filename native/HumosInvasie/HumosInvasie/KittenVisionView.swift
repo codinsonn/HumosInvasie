@@ -14,7 +14,7 @@ class KittenVisionView: UIView {
         
         super.init(frame: frame);
         
-        self.backgroundColor = UIColor.blueColor();
+        self.backgroundColor = UIColor.clearColor();
         
         println("[KittenView] Initialising View");
         

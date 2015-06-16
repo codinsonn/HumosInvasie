@@ -125,8 +125,6 @@ class MainViewController: UIViewController {
             object: nil
         )
         
-        self.addInformers()
-        
     }
     
     func addInformers(){
@@ -187,9 +185,6 @@ class MainViewController: UIViewController {
     
     func flushViewControllers(){
         
-        self.informerVC.removeFromParentViewController();
-        self.informerVC.view.removeFromSuperview();
-        
         self.creatorVC.removeFromParentViewController();
         self.creatorVC.view.removeFromSuperview();
         
@@ -203,7 +198,10 @@ class MainViewController: UIViewController {
     
     func showBadges(){
         if(self.presetsLoaded == true){
-            self.informerVC.addInformer("jezus")
+            if NSUserDefaults.standardUserDefaults().boolForKey("hasCreatedCharacter") == false{
+                self.addInformers()
+                self.informerVC.addInformer("jezus")
+            }
             UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: {
             
                 self.badgeButton1.alpha = 1;
@@ -300,6 +298,18 @@ class MainViewController: UIViewController {
             
             flushViewControllers();
             
+            /*
+            if NSUserDefaults.standardUserDefaults().boolForKey("hasPostedMessage"){
+                self.addChildViewController(uitlaatVC);
+                self.view.addSubview(uitlaatVC.view);
+            }
+            else{
+            */
+                self.addChildViewController(self.informerVC)
+                self.informerVC.addInformer("kim")
+                self.view.addSubview(self.informerVC.view)
+         //   }
+            
             self.mainView.changeBackgroundAnimation("KittenVisionBg");
             self.addChildViewController(kittenVC);
             self.view.addSubview(kittenVC.view);
@@ -342,6 +352,9 @@ class MainViewController: UIViewController {
     }
     
     func instructionsAgreedUpon(notification:NSNotification){
+        self.informerVC.removeFromParentViewController();
+        self.informerVC.view.removeFromSuperview();
+        
         var notification = notification.object as! String
         if(notification == "jezus"){
         badge1Tapped()

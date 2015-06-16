@@ -84,9 +84,9 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
         videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill;
         videoPreviewLayer?.frame = view.layer.bounds;
         
-        view.layer.addSublayer(videoPreviewLayer);
+        //view.layer.addSublayer(videoPreviewLayer);
         
-        captureSession?.startRunning();
+        //captureSession?.startRunning();
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection videoConnection: AVCaptureConnection!) {
@@ -172,30 +172,6 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
         
     }
     
-    
-    func screenShotMethod() {
-        
-        UIGraphicsBeginImageContext(self.view.frame.size);
-        self.view.layer.renderInContext(UIGraphicsGetCurrentContext());
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        let imageToCIImage = CIImage(image: image);
-        
-        let context = CIContext(options:[kCIContextUseSoftwareRenderer : true]);
-        let filter = CIFilter(name: "CISepiaTone", withInputParameters: [kCIInputImageKey: imageToCIImage, kCIInputIntensityKey: NSNumber(double: 2.5)]);
-        
-        let result = filter.outputImage;
-        var UIIMageResult = UIImage(CIImage: result);
-        
-        let resultView = UIImageView(image: UIIMageResult);
-        
-        
-        self.view.addSubview(resultView);
-        self.view.bringSubviewToFront(resultView);
-        
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
