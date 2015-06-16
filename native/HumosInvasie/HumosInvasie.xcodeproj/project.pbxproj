@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3A1FFFB81B28143500AC9419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFFB71B28143500AC9419 /* AppDelegate.swift */; };
-		3A1FFFBC1B28143500AC9419 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A1FFFBB1B28143500AC9419 /* Images.xcassets */; };
 		3A1FFFBF1B28143500AC9419 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A1FFFBD1B28143500AC9419 /* LaunchScreen.xib */; };
 		3A1FFFCB1B28143500AC9419 /* HumosInvasieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFFCA1B28143500AC9419 /* HumosInvasieTests.swift */; };
 		3A1FFFF31B28149D00AC9419 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1FFFEC1B28149400AC9419 /* Alamofire.framework */; };
@@ -52,6 +51,14 @@
 		3A96E5741B29BB0000B1C22E /* LogoPreloader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A96E5731B29BB0000B1C22E /* LogoPreloader.gif */; };
 		3A96E5761B2A136900B1C22E /* CharacterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A96E5751B2A136900B1C22E /* CharacterFactory.swift */; };
 		C015C1041B2ED2E00065A19A /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C015C1011B2ED2560065A19A /* GPUImage.framework */; };
+		C015C1061B2EDAD60065A19A /* GPUImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C015C1011B2ED2560065A19A /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C015C1141B2F0FA30065A19A /* Jesus_568x320.gif in Resources */ = {isa = PBXBuildFile; fileRef = C015C1131B2F0FA30065A19A /* Jesus_568x320.gif */; };
+		C015C1161B2F17120065A19A /* Jesus_568x320_once.gif in Resources */ = {isa = PBXBuildFile; fileRef = C015C1151B2F17120065A19A /* Jesus_568x320_once.gif */; };
+		C015C1181B2F287C0065A19A /* InformerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C015C1171B2F287C0065A19A /* InformerViewController.swift */; };
+		C015C11A1B2F2F780065A19A /* InformerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C015C1191B2F2F780065A19A /* InformerView.swift */; };
+		C015C11C1B2F326E0065A19A /* Putin_568x320_once.gif in Resources */ = {isa = PBXBuildFile; fileRef = C015C11B1B2F326E0065A19A /* Putin_568x320_once.gif */; };
+		C03ECA261B2FC3B0009451F1 /* Kim_568x320_once.gif in Resources */ = {isa = PBXBuildFile; fileRef = C03ECA251B2FC3B0009451F1 /* Kim_568x320_once.gif */; };
+		C072AFD61B2F982100F8F1AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C072AFD51B2F982100F8F1AC /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +134,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C015C1061B2EDAD60065A19A /* GPUImage.framework in Embed Frameworks */,
 				3A1FFFF41B28149D00AC9419 /* Alamofire.framework in Embed Frameworks */,
 				3A96E56D1B29A92900B1C22E /* Runes.framework in Embed Frameworks */,
 				3A96E56B1B29A92900B1C22E /* Gifu.framework in Embed Frameworks */,
@@ -140,7 +148,6 @@
 		3A1FFFB21B28143500AC9419 /* HumosInvasie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HumosInvasie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A1FFFB61B28143500AC9419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A1FFFB71B28143500AC9419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3A1FFFBB1B28143500AC9419 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3A1FFFBE1B28143500AC9419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3A1FFFC41B28143500AC9419 /* HumosInvasieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HumosInvasieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A1FFFC91B28143500AC9419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -183,6 +190,13 @@
 		3A96E5731B29BB0000B1C22E /* LogoPreloader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LogoPreloader.gif; sourceTree = "<group>"; };
 		3A96E5751B2A136900B1C22E /* CharacterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterFactory.swift; sourceTree = "<group>"; };
 		C015C0F51B2ED2560065A19A /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "../../../GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
+		C015C1131B2F0FA30065A19A /* Jesus_568x320.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Jesus_568x320.gif; sourceTree = "<group>"; };
+		C015C1151B2F17120065A19A /* Jesus_568x320_once.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Jesus_568x320_once.gif; sourceTree = "<group>"; };
+		C015C1171B2F287C0065A19A /* InformerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformerViewController.swift; sourceTree = "<group>"; };
+		C015C1191B2F2F780065A19A /* InformerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformerView.swift; sourceTree = "<group>"; };
+		C015C11B1B2F326E0065A19A /* Putin_568x320_once.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Putin_568x320_once.gif; sourceTree = "<group>"; };
+		C03ECA251B2FC3B0009451F1 /* Kim_568x320_once.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Kim_568x320_once.gif; sourceTree = "<group>"; };
+		C072AFD51B2F982100F8F1AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +225,7 @@
 		3A1FFFA91B28143500AC9419 = {
 			isa = PBXGroup;
 			children = (
+				C072AFD51B2F982100F8F1AC /* Images.xcassets */,
 				C015C0F51B2ED2560065A19A /* GPUImage.xcodeproj */,
 				3A8ECB391B2D2A2E000D1BE4 /* CoreLocation.framework */,
 				3A96E5681B29A92900B1C22E /* Gifu.framework */,
@@ -234,6 +249,8 @@
 		3A1FFFB41B28143500AC9419 /* HumosInvasie */ = {
 			isa = PBXGroup;
 			children = (
+				C015C1191B2F2F780065A19A /* InformerView.swift */,
+				C015C1171B2F287C0065A19A /* InformerViewController.swift */,
 				3A1FFFB71B28143500AC9419 /* AppDelegate.swift */,
 				3A8E37C71B283EF600FD5B52 /* MainViewController.swift */,
 				3A8E37F51B28E87500FD5B52 /* MainView.swift */,
@@ -242,7 +259,6 @@
 				3A8E37CE1B2840F200FD5B52 /* Uitlaat */,
 				3A8E37D71B28415200FD5B52 /* KittenVision */,
 				3A8E37E31B28820B00FD5B52 /* Libs */,
-				3A1FFFBB1B28143500AC9419 /* Images.xcassets */,
 				3A1FFFBD1B28143500AC9419 /* LaunchScreen.xib */,
 				3A1FFFB51B28143500AC9419 /* Supporting Files */,
 			);
@@ -252,6 +268,10 @@
 		3A1FFFB51B28143500AC9419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C03ECA251B2FC3B0009451F1 /* Kim_568x320_once.gif */,
+				C015C11B1B2F326E0065A19A /* Putin_568x320_once.gif */,
+				C015C1151B2F17120065A19A /* Jesus_568x320_once.gif */,
+				C015C1131B2F0FA30065A19A /* Jesus_568x320.gif */,
 				3A1FFFB61B28143500AC9419 /* Info.plist */,
 				3A96E5731B29BB0000B1C22E /* LogoPreloader.gif */,
 				3A8ECB3B1B2D2A89000D1BE4 /* News Gothic Light.ttf */,
@@ -498,15 +518,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C015C1161B2F17120065A19A /* Jesus_568x320_once.gif in Resources */,
+				C015C1141B2F0FA30065A19A /* Jesus_568x320.gif in Resources */,
 				3A8ECB381B2D28DD000D1BE4 /* KittenVisionBg.gif in Resources */,
 				3A96E5741B29BB0000B1C22E /* LogoPreloader.gif in Resources */,
 				3A96E5721B29A9FD00B1C22E /* CharHeadBg.gif in Resources */,
+				C015C11C1B2F326E0065A19A /* Putin_568x320_once.gif in Resources */,
 				3A8ECB361B2D28D2000D1BE4 /* CreatorBg.gif in Resources */,
 				3A8ECB3E1B2D2A9B000D1BE4 /* Swiss 721 Black.ttf in Resources */,
 				3A8ECB3C1B2D2A89000D1BE4 /* News Gothic Light.ttf in Resources */,
+				C072AFD61B2F982100F8F1AC /* Images.xcassets in Resources */,
 				3A8ECB311B2D28C9000D1BE4 /* UitlaatBg.gif in Resources */,
 				3A1FFFBF1B28143500AC9419 /* LaunchScreen.xib in Resources */,
-				3A1FFFBC1B28143500AC9419 /* Images.xcassets in Resources */,
+				C03ECA261B2FC3B0009451F1 /* Kim_568x320_once.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,9 +564,11 @@
 				3A8E37D41B28413400FD5B52 /* UitlaatPostsFactory.swift in Sources */,
 				3A8ECB191B2C41FF000D1BE4 /* DraggableUitlaatView.swift in Sources */,
 				3A8E37D31B28413400FD5B52 /* UitlaatData.swift in Sources */,
+				C015C1181B2F287C0065A19A /* InformerViewController.swift in Sources */,
 				3A96E5761B2A136900B1C22E /* CharacterFactory.swift in Sources */,
 				3A8E37DA1B28416A00FD5B52 /* KittenVisionView.swift in Sources */,
 				3A8ECB1B1B2C41FF000D1BE4 /* OverlayView.swift in Sources */,
+				C015C11A1B2F2F780065A19A /* InformerView.swift in Sources */,
 				3A8E37EB1B28C7CF00FD5B52 /* BodyPartView.swift in Sources */,
 				3A8E37F41B28E0F600FD5B52 /* QRReplaceImageView.swift in Sources */,
 				3A8E37F01B28CA6200FD5B52 /* QRReplaceImageModel.swift in Sources */,
