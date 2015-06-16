@@ -28,6 +28,23 @@ class UitlaatDAO
         return array();
     }
 
+    public function getLatestMessages($rows){
+        $sql = "SELECT * FROM `bdgt_uitlaat` 
+                ORDER BY id DESC
+                LIMIT :rows";
+        $qry = $this->pdo->prepare($sql);
+        $qry->bindValue(':rows', $rows);
+
+        if($qry->execute()){
+            $messages = $qry->fetchAll(PDO::FETCH_ASSOC);
+            if(!empty($messages)){
+                $messages = $this -> getMessageCharacters($messages);
+                return $messages;
+            }
+        }
+        return array();
+    }
+
     public function getMessageCharacters($messages){
         $i = 0;
 
@@ -46,21 +63,22 @@ class UitlaatDAO
         return $message;
     }
 
-    public function getMessagesByTimespanAndLocation($time_ago, $time_unit, $min_lat, $max_lat, $min_long, $max_long){
+    public function getMessagesByTimespanAndLocation($time_ago, $time_unit, $min_lat, $max_lat, $min_long, $max_long, $last_swiped_id){
         $sql = "SELECT * FROM `bdgt_uitlaat` 
                 WHERE time_posted > DATE_ADD(NOW(), INTERVAL -:time_ago HOUR) 
                 AND latitude > :min_lat 
                 AND latitude < :max_lat 
                 AND longitude > :min_long 
                 AND longitude < :max_long 
-                ORDER BY score DESC LIMIT 0, 5";
+                AND id > :last_swiped_id 
+                ORDER BY time_posted ASC";
         $qry = $this->pdo->prepare($sql);
         $qry->bindValue(':time_ago', $time_ago);
-        //$qry->bindValue(':time_unit', $time_unit);
         $qry->bindValue(':min_lat', $min_lat);
         $qry->bindValue(':max_lat', $max_lat);
         $qry->bindValue(':min_long', $min_long);
         $qry->bindValue(':max_long', $max_long);
+        $qry->bindValue(':last_swiped_id', $last_swiped_id);
 
         if($qry->execute()){
             $messages = $qry->fetchAll(PDO::FETCH_ASSOC);

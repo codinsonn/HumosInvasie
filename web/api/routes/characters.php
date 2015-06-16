@@ -52,13 +52,15 @@ $app->post('/characters/?', function() use ($app, $charactersDAO, $imagesDAO){
     exit();
 });
 
-$app->put('/characters/:id/?', function($id) use ($app, $charactersDAO){
+$app->post('/characters/update/?', function() use ($app, $charactersDAO){
     header("Content-Type: application/json");
     $post = $app->request->post();
     if(empty($post)){
         $post = (array) json_decode($app->request()->getBody());
     }
-    echo json_encode($charactersDAO->updateCharacter($id, $post['char_img_id'], $post['nickname'], $post['head_preset_id'], $post['upper_body_preset_id'], $post['lower_body_preset_id']), JSON_NUMERIC_CHECK);
+
+    //echo json_encode($post);
+    echo json_encode($charactersDAO->updateCharacter($post['id'], $post['char_img_id'], $post['nickname'], $post['head_preset_id'], $post['upper_body_preset_id'], $post['lower_body_preset_id']), JSON_NUMERIC_CHECK);
     exit();
 });
 

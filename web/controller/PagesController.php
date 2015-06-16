@@ -14,7 +14,11 @@ class PagesController extends AppController {
 
 	public function onepager() {
 
-		
+		$latestChars = $this->charactersDAO->getLatestCharacters(7);
+		$this -> set('latestChars', $latestChars);
+
+		$latestMsgs = $this->uitlaatDAO->getLatestMessages(7);
+		$this -> set('uitlaatMsgs', $latestMsgs);
 
 	}
 

@@ -3,9 +3,9 @@
 $uitlaatDAO = new UitlaatDAO();
 
 // --- Getters --------------------------
-$app->get('/uitlaat/filter/hours/:hours_ago/min_lat/:min_lat/max_lat/:max_lat/min_long/:min_long/max_long/:max_long/?',function($hours_ago, $min_lat, $max_lat, $min_long, $max_long) use ($uitlaatDAO){
+$app->get('/uitlaat/filter/hours/:hours_ago/min_lat/:min_lat/max_lat/:max_lat/min_long/:min_long/max_long/:max_long/last_swiped_id/:last_swiped_id/?',function($hours_ago, $min_lat, $max_lat, $min_long, $max_long, $last_swiped_id) use ($uitlaatDAO){
     header("Content-Type: application/json");
-    echo json_encode($uitlaatDAO->getMessagesByTimespanAndLocation($hours_ago, "HOUR", $min_lat, $max_lat, $min_long, $max_long), JSON_NUMERIC_CHECK);
+    echo json_encode($uitlaatDAO->getMessagesByTimespanAndLocation($hours_ago, "HOUR", $min_lat, $max_lat, $min_long, $max_long, $last_swiped_id), JSON_NUMERIC_CHECK);
     exit();
 });
 

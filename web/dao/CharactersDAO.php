@@ -27,6 +27,23 @@ class CharactersDAO
         return array();
     }
 
+    public function getLatestCharacters($rows){
+        $sql = "SELECT `bdgt_characters`.*, `bdgt_images`.`filename` 
+                FROM `bdgt_characters` LEFT JOIN `bdgt_images` ON `bdgt_characters`.`char_img_id` = `bdgt_images`.`id` 
+                ORDER BY id DESC
+                LIMIT :rows";
+        $qry = $this->pdo->prepare($sql);
+        $qry -> bindValue(':rows', $rows);
+
+        if($qry->execute()){
+            $characters = $qry->fetchAll(PDO::FETCH_ASSOC);
+            if(!empty($characters)){
+                return $characters;
+            }
+        }
+        return array();
+    }
+
     public function getCharactersAfterId($latest_id){
         $sql = "SELECT `bdgt_characters`.*, `bdgt_images`.`filename` 
                 FROM `bdgt_characters` LEFT JOIN `bdgt_images` ON `bdgt_characters`.`char_img_id` = `bdgt_images`.`id` 
@@ -124,14 +141,14 @@ class CharactersDAO
         return array();
     }
 
-    public function updateCharacter($id, $char_img_id, $nickname, $head_preset_id, $torso_preset_id, $legs_preset_id){
+    public function updateCharacter($id, $img_id, $nickname, $head_preset_id, $torso_preset_id, $legs_preset_id){
         if(empty($errors)){
             $sql = "UPDATE `bdgt_characters` 
-                    SET `nickname` = ':nickname', `char_img_id` = ':char_img_id', `head_preset_id` = ':head_preset_id', `torso_preset_id` = ':torso_preset_id', `legs_preset_id` = ':legs_preset_id' 
+                    SET `nickname` = :nickname, `char_img_id` = :img_id, `head_preset_id` = :head_preset_id, `torso_preset_id` = :torso_preset_id, `legs_preset_id` = :legs_preset_id 
                     WHERE `bdgt_characters`.`id` = :id";
             $qry = $this->pdo->prepare($sql);
             $qry -> bindValue(':id', $id);
-            $qry -> bindValue(':char_img_id', $char_img_id);
+            $qry -> bindValue(':img_id', $img_id);
             $qry -> bindValue(':nickname', htmlentities(strip_tags($nickname)));
             $qry -> bindValue(':head_preset_id', $head_preset_id);
             $qry -> bindValue(':torso_preset_id', $torso_preset_id);

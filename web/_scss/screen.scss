@@ -1,0 +1,346 @@
+@import "compass/css3/font-face";
+
+@mixin border-image($image_url, $stretch_value) {
+  -webkit-border-image: url($image_url) $stretch_value stretch;
+     -moz-border-image: url($image_url) $stretch_value stretch;
+      -ms-border-image: url($image_url) $stretch_value stretch;
+          border-image: url($image_url) $stretch_value stretch;
+}
+
+$news_gothic : "news_gothic-webfont";
+$swiss_721 : "swiss_721-webfont";
+$menlo : "menlo-regular-webfont";
+
+@include font-face($news_gothic, font-files("news_gothic_light-webfont.woff", "news_gothic_light-webfont.ttf", "news_gothic_light-webfont.svg"), "news_gothic_light-webfont.eot");
+@include font-face($swiss_721, font-files("swiss_721_black-webfont.woff", "swiss_721_black-webfont.ttf", "swiss_721_black-webfont.svg"), "swiss_721_black-webfont.eot");
+@include font-face($menlo, font-files("menlo-regular-webfont.woff", "menlo-regular-webfont.ttf", "menlo-regular-webfont.svg"), "menlo-regular-webfont.eot");
+
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+    padding-top: 0px;
+}
+
+/* ---- Global -------------------------------- */
+
+.jumbotron{
+
+	h1{
+		font-family: $swiss_721;
+	}
+
+}
+
+.page-header{
+
+	h2{
+
+		font-family: $menlo;
+		color: #EC1F64;
+		text-shadow: 1px 0px rgba(46, 46, 46, 0.1);
+
+		small{
+			color: #363636;
+		}
+
+	}
+
+}
+
+/* ---- Dynamic Header -------------------------------- */
+
+.header-large{
+	
+	height: 600px;
+	
+	img{
+		height: 400px;
+		width: auto;
+	}
+
+}
+
+.header-medium{
+	
+	height: 440px;
+
+	img{
+		height: 300px;
+		width: auto;
+	}
+
+}
+
+.header-small{
+	
+	height: 250px;
+
+	img{
+		height: 200px;
+		width: auto;
+	}
+
+}
+
+.dynamic-header-wrapper{
+
+	width: 100%;
+	top: 0px;
+	padding-top: 20px;
+	margin-top: 0px;
+	background-image: image-url("HeaderBg.png");
+	background-size: cover;
+	background-position: bottom;
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+
+	img{
+		position: relative;
+		margin: 0 auto;
+		margin-top: -20px;
+		padding-bottom: 70px;
+	}
+
+}
+
+.btn-invasie{
+
+	font-family: $menlo;
+	background-color: #EC1F64;
+	color: #FFFFFF;
+
+}
+
+/* ---- Character Backgrounds -------------------------------- */
+
+	.putin{
+		background-image: image-url("Putin_de_Dromer_Cropped.png");
+		background-size: 150px 180px;
+		background-position: bottom right;
+		background-repeat: no-repeat;
+		background-color: #FFFFFF;
+	}
+
+@media all and (min-width: 800px){
+	.jesus{
+		background-image: image-url("rocket-jezus.png");
+		background-size: 380px 300px;
+		background-position: bottom right;
+		background-repeat: no-repeat;
+	}
+
+	.kim{
+		background-image: image-url("Kim_Jung_Oen_De_Beloner.png");
+		background-size: 150px 150px;
+		background-position: top right;
+		background-repeat: no-repeat;
+		background-color: #FFFFFF;
+	}
+}
+
+@media all and (max-width: 800px){
+	.jesus{
+		background: none;
+	}
+
+	.kim{
+		background: none;
+	}
+}
+
+/* ---- Badges & Challenges -------------------------------- */
+
+.challenges-container{
+
+	.panel-body{
+		
+		background-color: rgba(248, 248, 244, 1);
+
+		img{
+			position: relative;
+			display: block;
+			width: 90px;
+			height: 90px;
+			left: 50%;
+			margin-left: -45px;
+			margin-top: 6px;
+			margin-bottom: 12px;
+		}
+
+		h4{
+			font-family: $swiss_721;
+			font-size: 1.2em;
+			color: #D41617;
+		}
+
+	}
+
+}
+
+/* ---- Uitlaat Carousel -------------------------------- */
+
+.carousel-control{
+
+	background: none;
+	background-image: none;
+
+}
+
+.uitlaat-carousel-container{
+	
+	.carousel-indicators{
+		position: relative;
+		margin-top: -16px;
+	}
+
+}
+
+.uitlaat-carousel{
+	
+	height: 280px;
+	width: 100%;
+	background-color: #F3745E;
+	
+	.uitlaat-wrapper{
+
+		width: 100%;
+
+		.uitlaat-container{
+
+			position: absolute;
+			width: 300px;
+			height: auto;
+			left: 50%;
+			margin-top: 20px;
+			margin-left: -156px;
+
+			.media-left{
+				
+				padding-right: 12px;
+
+				img{
+					height: 260px;
+					width: auto;
+				}
+
+			}
+
+			.media-body{
+
+				overflow: visible;
+				
+				.message-container{
+					
+					position: relative;
+
+					width: 200px;
+					top: 30px;
+					
+					border: 5px solid white;
+					background-color: #F3745E;
+
+					overflow: visible;
+					
+					.triangle{
+						position: absolute;
+						display: block;
+
+						border-style: solid;
+						border-width: 0 25px 25px 0;
+						border-color: transparent white transparent transparent;
+
+						left: -25px;
+						top: 20px;
+
+						height: 0;
+						width: 0;
+						
+						content: "";
+					}
+
+					.triangle:before{
+						position: absolute;
+						display: block;
+
+						border-style: solid;
+						border-width: 0 15px 15px 0;
+						border-color: transparent #F3745E transparent transparent;
+
+						left: 10px;
+						top: 4px;
+
+						height: 0;
+						width: 0;
+						
+						content: "";
+					}
+
+					h4{
+						padding: 0px 14px;
+						font-size: 1.3em;
+						font-family: $swiss_721;
+					}
+
+					p{
+						padding: 0px 14px;
+						font-size: 1em;
+						font-family: $news_gothic;
+					}
+
+					footer{
+						padding: 6px 14px 1px 14px;
+						font-size: 1em;
+						font-family: $swiss_721;
+						background-color: white;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+/* ---- Badges & Challenges -------------------------------- */
+
+.gadgets-container{
+	
+	.longer-body{
+		height: 450px;
+	}
+
+	.panel-body{
+		
+		background-color: #F3745E;
+
+		img{
+			position: relative;
+			display: block;
+			width: 120px;
+			height: 120px;
+			left: 50%;
+			margin-left: -60px;
+			margin-top: 8px;
+			margin-bottom: 14px;
+		}
+
+		h4{
+			font-family: $swiss_721;
+			font-size: 1.2em;
+			color: #FFFFFF;
+		}
+
+		p{
+			color: #FFFFFF;
+			text-shadow: 1px 0px rgba(46, 46, 46, 0.2);
+			margin: 20px;
+		}
+
+	}
+
+}
+
