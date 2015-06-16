@@ -11,7 +11,7 @@ import AVFoundation
 import Alamofire
 
 class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    
+    let backButton:UIButton;
     var captureSession:AVCaptureSession?;
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?;
     var qrCodeFrameView:UIView?;
@@ -31,7 +31,8 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        
+        self.backButton = UIButton(frame: CGRectMake(0, 0, 40, 40))
+        self.backButton.setTitle("back", forState: UIControlState.Normal)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         
         println("[KittenVC] Initialising ViewController");
@@ -46,13 +47,13 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
         
         println("[KittenVC] Loading View");
         
-        let containerRect = CGRectMake(0, 0, 488, 320);
+        let containerRect = CGRectMake(0, 0, 640, 320);
         
         self.view = KittenVisionView(frame: containerRect);
     }
     
     override func viewDidLoad() {
-        
+        self.backButton.addTarget(self, action: "goBackFromKittenVision", forControlEvents: UIControlEvents.TouchUpInside)
         println("[KittenVC] View did load");
         
         super.viewDidLoad();
@@ -84,9 +85,19 @@ class KittenVisionViewController: UIViewController, AVCaptureMetadataOutputObjec
         videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill;
         videoPreviewLayer?.frame = view.layer.bounds;
         
-        //view.layer.addSublayer(videoPreviewLayer);
-        
-        //captureSession?.startRunning();
+    }
+    
+    func startKittenVision(){
+        view.layer.addSublayer(videoPreviewLayer);
+        captureSession?.startRunning();
+        self.view.addSubview(self.backButton)
+    }
+    
+    func goBackFromKittenVision(){
+        println("going back")
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            "GOING_BACK_FROM_KV",
+            object: self.QRSerializer)
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection videoConnection: AVCaptureConnection!) {

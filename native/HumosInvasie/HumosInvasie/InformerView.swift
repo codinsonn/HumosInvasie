@@ -24,6 +24,9 @@ class InformerView: UIView {
     var putinIntructieView:UIImageView!
     var putinInstructie:UIImage!
     
+    var kimInstructieView:UIImageView!
+    var kimInstructie:UIImage!
+    
     var activeInstruction:UIImageView!
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -99,6 +102,17 @@ class InformerView: UIView {
             putinInstructie.size.height/2)
         
         putinIntructieView.frame = self.startInstructionPos
+        
+        self.kimInstructie = UIImage(named: "kim_tekst")!
+        self.kimInstructieView = UIImageView(image: kimInstructie)
+        self.startInstructionPos = CGRectMake(
+            (UIScreen.mainScreen().bounds.width - kimInstructie.size.width/2)/2,
+            -640,
+            kimInstructie.size.width/2,
+            kimInstructie.size.height/2)
+        
+        kimInstructieView.frame = self.startInstructionPos
+
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -133,8 +147,8 @@ class InformerView: UIView {
             self.addSubview(self.kimWebView)
             self.activeInformer = self.kimWebView
             
-            self.addSubview(self.putinIntructieView)
-            self.activeInstruction = self.putinIntructieView
+            self.addSubview(self.kimInstructieView)
+            self.activeInstruction = self.kimInstructieView
         }
         
         self.makeInstructionVisible(4,theFrame: finishRect)

@@ -97,6 +97,13 @@ class MainViewController: UIViewController {
             object: nil
         );
         
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "killKittenVision:",
+            name: "GOING_BACK_FROM_KV",
+            object: nil
+        );
+        
         var delay = 1 * Double(NSEC_PER_SEC);
         var time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay));
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -136,6 +143,15 @@ class MainViewController: UIViewController {
         
         self.checkUserData();
         
+    }
+    
+    func killKittenVision(notification:NSNotification){
+        println(notification.object)
+        
+        
+        
+        self.kittenVC.removeFromParentViewController();
+        self.kittenVC.view.removeFromSuperview();
     }
     
     func checkUserData(){
@@ -298,21 +314,19 @@ class MainViewController: UIViewController {
             
             flushViewControllers();
             
-            /*
-            if NSUserDefaults.standardUserDefaults().boolForKey("hasPostedMessage"){
-                self.addChildViewController(uitlaatVC);
-                self.view.addSubview(uitlaatVC.view);
+            
+            if NSUserDefaults.standardUserDefaults().boolForKey("hasUnlockedKitten"){
+                self.addChildViewController(kittenVC);
+                self.view.addSubview(kittenVC.view);
             }
             else{
-            */
                 self.addChildViewController(self.informerVC)
                 self.informerVC.addInformer("kim")
                 self.view.addSubview(self.informerVC.view)
-         //   }
+            }
             
             self.mainView.changeBackgroundAnimation("KittenVisionBg");
-            self.addChildViewController(kittenVC);
-            self.view.addSubview(kittenVC.view);
+           
             
         }
         
@@ -340,6 +354,11 @@ class MainViewController: UIViewController {
             object: nil
         )
 
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: "GOING_BACK_FROM_KV",
+            object: nil
+        );
         
     }
     
@@ -363,6 +382,11 @@ class MainViewController: UIViewController {
             badge2Tapped()
             self.addChildViewController(uitlaatVC);
             self.view.addSubview(uitlaatVC.view);
+        }
+        if(notification == "kim"){
+            self.addChildViewController(kittenVC);
+            self.view.addSubview(kittenVC.view);
+            self.kittenVC.startKittenVision();
         }
         
     }
